@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation Datalist HTML</title>
+    <link rel="stylesheet" href="../commum.css">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Menu de navigation latéral -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2><a href="../index.html">📚 Documentation</a></h2>
+      </div>
+      <div class="sidebar-content">
+        <ul class="nav-menu">
+          <li><a href="#top" class="nav-link">🏠 Accueil</a></li>
+          <li><a href="#introduction" class="nav-link">📖 Introduction</a></li>
+          <li><a href="#basic-usage" class="nav-link">🚀 Utilisation de base</a></li>
+          <li class="nav-section">
+            <span class="nav-section-title">Exemples Datalist</span>
+            <ul class="nav-submenu">
+              <li><a href="#example-1" class="nav-link">1) Liste simple</a></li>
+              <li><a href="#example-2" class="nav-link">2) Pays et villes</a></li>
+              <li><a href="#example-3" class="nav-link">3) Couleurs</a></li>
+              <li><a href="#example-4" class="nav-link">4) Unités de mesure</a></li>
+              <li><a href="#example-5" class="nav-link">5) Langages de programmation</a></li>
+              <li><a href="#example-6" class="nav-link">6) Dates et heures</a></li>
+              <li><a href="#example-7" class="nav-link">7) Datalist avec optgroup</a></li>
+              <li><a href="#example-8" class="nav-link">8) Datalist avec validation</a></li>
+              <li><a href="#example-9" class="nav-link">9) Datalist dynamique (API)</a></li>
+              <li><a href="#example-10" class="nav-link">10) Input type="search"</a></li>
+              <li><a href="#example-11" class="nav-link">11) Input type="url"</a></li>
+              <li><a href="#example-12" class="nav-link">12) Input type="tel"</a></li>
+              <li><a href="#example-13" class="nav-link">13) Input type="email"</a></li>
+              <li><a href="#example-14" class="nav-link">14) Input type="date"</a></li>
+              <li><a href="#example-15" class="nav-link">15) Input type="month"</a></li>
+              <li><a href="#example-16" class="nav-link">16) Input type="week"</a></li>
+              <li><a href="#example-17" class="nav-link">17) Input type="time"</a></li>
+              <li><a href="#example-18" class="nav-link">18) Input type="datetime-local"</a></li>
+              <li><a href="#example-19" class="nav-link">19) Input type="number"</a></li>
+              <li><a href="#example-20" class="nav-link">20) Input type="color"</a></li>
+            </ul>
+          </li>
+          <li class="nav-section">
+            <span class="nav-section-title">Select & Multiple</span>
+            <ul class="nav-submenu">
+              <li><a href="#select-basic" class="nav-link">Select de base</a></li>
+              <li><a href="#select-multiple" class="nav-link">Select Multiple</a></li>
+              <li><a href="#select-searchable" class="nav-link">Select Searchable</a></li>
+              <li><a href="#select-optgroup" class="nav-link">Select avec optgroup</a></li>
+              <li><a href="#select-disabled" class="nav-link">Select avec disabled</a></li>
+              <li><a href="#select-validation" class="nav-link">Select avec validation</a></li>
+            </ul>
+          </li>
+          <li><a href="#select-vs-datalist-section" class="nav-link">🔄 Select vs Datalist</a></li>
+          <li><a href="#advanced" class="nav-link">⚙️ Utilisation avancée</a></li>
+          <li><a href="#accessibility" class="nav-link">♿ Accessibilité</a></li>
+          <li><a href="#browser-support" class="nav-link">🌐 Compatibilité</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Bouton pour ouvrir/fermer le menu sur mobile -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir/Fermer le menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <main id="top">
+      <h1>📋 Documentation Datalist HTML</h1>
+      <blockquote>
+        L'élément <code>&lt;datalist&gt;</code> permet de créer des suggestions de saisie pour les champs <code>&lt;input&gt;</code>. 
+        C'est une alternative native et accessible aux bibliothèques d'autocomplétion JavaScript.
+      </blockquote>
+
+      <!-- Introduction -->
+      <section id="introduction">
+        <h2>📖 Introduction</h2>
+        <p>
+          L'élément <code>&lt;datalist&gt;</code> est un élément HTML5 qui fournit une liste d'options prédéfinies pour un champ de saisie. 
+          Contrairement à <code>&lt;select&gt;</code>, l'utilisateur peut saisir une valeur personnalisée ou choisir parmi les suggestions.
+        </p>
+        <div class="guide-content">
+          <div class="guide-box">
+            <h3>✅ Avantages</h3>
+            <ul>
+              <li>✅ <strong>Natif</strong> : Pas besoin de JavaScript</li>
+              <li>✅ <strong>Accessible</strong> : Support natif des lecteurs d'écran</li>
+              <li>✅ <strong>Performant</strong> : Pas de dépendances externes</li>
+              <li>✅ <strong>Flexible</strong> : L'utilisateur peut saisir une valeur personnalisée</li>
+              <li>✅ <strong>Simple</strong> : Facile à implémenter</li>
+            </ul>
+          </div>
+          <div class="guide-box">
+            <h3>🎯 Cas d'usage</h3>
+            <ul>
+              <li>✅ Champs de recherche avec suggestions</li>
+              <li>✅ Saisie de pays, villes, codes postaux</li>
+              <li>✅ Sélection de couleurs, unités</li>
+              <li>✅ Autocomplétion de formulaires</li>
+              <li>✅ Suggestions de tags ou catégories</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- Utilisation de base -->
+      <section id="basic-usage">
+        <h2>🚀 Utilisation de base</h2>
+        <p>
+          Pour utiliser <code>&lt;datalist&gt;</code>, vous devez :
+        </p>
+        <ol>
+          <li>Créer un élément <code>&lt;datalist&gt;</code> avec un <code>id</code> unique</li>
+          <li>Ajouter des options avec <code>&lt;option&gt;</code> à l'intérieur</li>
+          <li>Lier le <code>&lt;input&gt;</code> au datalist avec l'attribut <code>list</code></li>
+        </ol>
+
+        <h3>Structure HTML</h3>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;input type="text" list="myList" /&gt;
+&lt;datalist id="myList"&gt;
+  &lt;option value="Option 1"&gt;
+  &lt;option value="Option 2"&gt;
+  &lt;option value="Option 3"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+
+        <h3>Exemple interactif</h3>
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF - Tapez pour voir les suggestions</span>
+          <div class="example-content">
+            <label for="basic-input">Choisissez une option :</label>
+            <input 
+              type="text" 
+              id="basic-input" 
+              list="basic-list" 
+              placeholder="Commencez à taper..."
+            />
+            <datalist id="basic-list">
+              <option value="Option 1">
+              <option value="Option 2">
+              <option value="Option 3">
+              <option value="Option 4">
+              <option value="Option 5">
+            </datalist>
+          </div>
+        </div>
+      </section>
+
+      <hr />
+
+      <h2>Exemples pratiques</h2>
+
+      <!-- Exemple 1 -->
+      <article class="pattern" id="example-1">
+        <h3>1) Liste simple de suggestions</h3>
+        <p><strong>But</strong> : créer un champ avec des suggestions prédéfinies.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="simple-input">Votre navigateur préféré :</label>
+            <input 
+              type="text" 
+              id="simple-input" 
+              list="browsers" 
+              placeholder="Chrome, Firefox, Safari..."
+            />
+            <datalist id="browsers">
+              <option value="Chrome">
+              <option value="Firefox">
+              <option value="Safari">
+              <option value="Edge">
+              <option value="Opera">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="browser"&gt;Votre navigateur :&lt;/label&gt;
+&lt;input type="text" id="browser" list="browsers" /&gt;
+&lt;datalist id="browsers"&gt;
+  &lt;option value="Chrome"&gt;
+  &lt;option value="Firefox"&gt;
+  &lt;option value="Safari"&gt;
+  &lt;option value="Edge"&gt;
+  &lt;option value="Opera"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 2 -->
+      <article class="pattern" id="example-2">
+        <h3>2) Pays et villes</h3>
+        <p><strong>But</strong> : autocomplétion pour les noms de pays ou de villes.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="country-input">Pays :</label>
+            <input 
+              type="text" 
+              id="country-input" 
+              list="countries" 
+              placeholder="France, Espagne, Allemagne..."
+            />
+            <datalist id="countries">
+              <option value="France">
+              <option value="Espagne">
+              <option value="Allemagne">
+              <option value="Italie">
+              <option value="Royaume-Uni">
+              <option value="Belgique">
+              <option value="Suisse">
+              <option value="Canada">
+              <option value="États-Unis">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="country"&gt;Pays :&lt;/label&gt;
+&lt;input type="text" id="country" list="countries" /&gt;
+&lt;datalist id="countries"&gt;
+  &lt;option value="France"&gt;
+  &lt;option value="Espagne"&gt;
+  &lt;option value="Allemagne"&gt;
+  &lt;option value="Italie"&gt;
+  &lt;option value="Royaume-Uni"&gt;
+  &lt;option value="Belgique"&gt;
+  &lt;option value="Suisse"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 3 -->
+      <article class="pattern" id="example-3">
+        <h3>3) Sélecteur de couleurs</h3>
+        <p><strong>But</strong> : combiner <code>type="color"</code> avec datalist pour des suggestions de couleurs nommées.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="color-input">Couleur (nom ou sélecteur) :</label>
+            <input 
+              type="text" 
+              id="color-input" 
+              list="colors" 
+              placeholder="Rouge, #FF0000..."
+            />
+            <datalist id="colors">
+              <option value="Rouge">#FF0000</option>
+              <option value="Vert">#00FF00</option>
+              <option value="Bleu">#0000FF</option>
+              <option value="Jaune">#FFFF00</option>
+              <option value="Violet">#800080</option>
+              <option value="Orange">#FFA500</option>
+              <option value="#FF0000">
+              <option value="#00FF00">
+              <option value="#0000FF">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="color"&gt;Couleur :&lt;/label&gt;
+&lt;input type="text" id="color" list="colors" /&gt;
+&lt;datalist id="colors"&gt;
+  &lt;option value="Rouge"&gt;#FF0000&lt;/option&gt;
+  &lt;option value="Vert"&gt;#00FF00&lt;/option&gt;
+  &lt;option value="Bleu"&gt;#0000FF&lt;/option&gt;
+  &lt;option value="#FF0000"&gt;
+  &lt;option value="#00FF00"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+        <p class="note">
+          💡 <strong>Astuce :</strong> Vous pouvez utiliser <code>value</code> pour la valeur affichée et le contenu de <code>&lt;option&gt;</code> pour un label optionnel.
+        </p>
+      </article>
+
+      <!-- Exemple 4 -->
+      <article class="pattern" id="example-4">
+        <h3>4) Unités de mesure</h3>
+        <p><strong>But</strong> : suggestions pour les unités (px, em, rem, %, etc.).</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="unit-input">Unité CSS :</label>
+            <input 
+              type="text" 
+              id="unit-input" 
+              list="css-units" 
+              placeholder="px, em, rem, %..."
+            />
+            <datalist id="css-units">
+              <option value="px">
+              <option value="em">
+              <option value="rem">
+              <option value="%">
+              <option value="vh">
+              <option value="vw">
+              <option value="pt">
+              <option value="cm">
+              <option value="mm">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="unit"&gt;Unité CSS :&lt;/label&gt;
+&lt;input type="text" id="unit" list="css-units" /&gt;
+&lt;datalist id="css-units"&gt;
+  &lt;option value="px"&gt;
+  &lt;option value="em"&gt;
+  &lt;option value="rem"&gt;
+  &lt;option value="%"&gt;
+  &lt;option value="vh"&gt;
+  &lt;option value="vw"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 5 -->
+      <article class="pattern" id="example-5">
+        <h3>5) Langages de programmation</h3>
+        <p><strong>But</strong> : suggestions pour les technologies et langages.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="lang-input">Langage de programmation :</label>
+            <input 
+              type="text" 
+              id="lang-input" 
+              list="languages" 
+              placeholder="JavaScript, Python, Java..."
+            />
+            <datalist id="languages">
+              <option value="JavaScript">
+              <option value="TypeScript">
+              <option value="Python">
+              <option value="Java">
+              <option value="C++">
+              <option value="C#">
+              <option value="PHP">
+              <option value="Ruby">
+              <option value="Go">
+              <option value="Rust">
+              <option value="Swift">
+              <option value="Kotlin">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="language"&gt;Langage :&lt;/label&gt;
+&lt;input type="text" id="language" list="languages" /&gt;
+&lt;datalist id="languages"&gt;
+  &lt;option value="JavaScript"&gt;
+  &lt;option value="TypeScript"&gt;
+  &lt;option value="Python"&gt;
+  &lt;option value="Java"&gt;
+  &lt;option value="C++"&gt;
+  &lt;option value="PHP"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 6 -->
+      <article class="pattern" id="example-6">
+        <h3>6) Dates et formats</h3>
+        <p><strong>But</strong> : suggestions pour les formats de date ou valeurs prédéfinies.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="date-input">Format de date :</label>
+            <input 
+              type="text" 
+              id="date-input" 
+              list="date-formats" 
+              placeholder="YYYY-MM-DD, DD/MM/YYYY..."
+            />
+            <datalist id="date-formats">
+              <option value="YYYY-MM-DD">
+              <option value="DD/MM/YYYY">
+              <option value="MM/DD/YYYY">
+              <option value="DD-MM-YYYY">
+              <option value="YYYY/MM/DD">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="date-format"&gt;Format de date :&lt;/label&gt;
+&lt;input type="text" id="date-format" list="date-formats" /&gt;
+&lt;datalist id="date-formats"&gt;
+  &lt;option value="YYYY-MM-DD"&gt;
+  &lt;option value="DD/MM/YYYY"&gt;
+  &lt;option value="MM/DD/YYYY"&gt;
+  &lt;option value="DD-MM-YYYY"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 7 -->
+      <article class="pattern" id="example-7">
+        <h3>7) Datalist avec optgroup (groupes d'options)</h3>
+        <p><strong>But</strong> : organiser les suggestions en groupes logiques pour une meilleure lisibilité.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="optgroup-input">Choisissez un framework :</label>
+            <input 
+              type="text" 
+              id="optgroup-input" 
+              list="frameworks-list"
+              placeholder="React, Vue, Angular..."
+            />
+            <datalist id="frameworks-list">
+              <optgroup label="Frontend">
+                <option value="React">React</option>
+                <option value="Vue.js">Vue.js</option>
+                <option value="Angular">Angular</option>
+                <option value="Svelte">Svelte</option>
+              </optgroup>
+              <optgroup label="Backend">
+                <option value="Express">Express</option>
+                <option value="NestJS">NestJS</option>
+                <option value="FastAPI">FastAPI</option>
+                <option value="Django">Django</option>
+              </optgroup>
+              <optgroup label="Full-stack">
+                <option value="Next.js">Next.js</option>
+                <option value="Nuxt.js">Nuxt.js</option>
+                <option value="Remix">Remix</option>
+              </optgroup>
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="framework"&gt;Choisissez un framework :&lt;/label&gt;
+&lt;input type="text" id="framework" list="frameworks-list" /&gt;
+&lt;datalist id="frameworks-list"&gt;
+  &lt;optgroup label="Frontend"&gt;
+    &lt;option value="React"&gt;React&lt;/option&gt;
+    &lt;option value="Vue.js"&gt;Vue.js&lt;/option&gt;
+    &lt;option value="Angular"&gt;Angular&lt;/option&gt;
+  &lt;/optgroup&gt;
+  &lt;optgroup label="Backend"&gt;
+    &lt;option value="Express"&gt;Express&lt;/option&gt;
+    &lt;option value="NestJS"&gt;NestJS&lt;/option&gt;
+  &lt;/optgroup&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 8 -->
+      <article class="pattern" id="example-8">
+        <h3>8) Datalist avec validation HTML5</h3>
+        <p><strong>But</strong> : combiner datalist avec la validation native HTML5 pour garantir des valeurs valides.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF - Essayez de soumettre sans sélectionner</span>
+          <div class="example-content">
+            <form id="validation-form" onsubmit="event.preventDefault(); alert('Formulaire valide !');">
+              <label for="validated-input">Email (avec suggestions) :</label>
+              <input 
+                type="email" 
+                id="validated-input" 
+                list="email-domains"
+                placeholder="votre@email.com"
+                required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              />
+              <datalist id="email-domains">
+                <option value="@gmail.com">
+                <option value="@yahoo.com">
+                <option value="@outlook.com">
+                <option value="@hotmail.com">
+                <option value="@icloud.com">
+                <option value="@protonmail.com">
+              </datalist>
+              <button type="submit">Valider</button>
+            </form>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;form&gt;
+  &lt;label for="email"&gt;Email :&lt;/label&gt;
+  &lt;input 
+    type="email" 
+    id="email" 
+    list="email-domains"
+    required
+    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+  /&gt;
+  &lt;datalist id="email-domains"&gt;
+    &lt;option value="@gmail.com"&gt;
+    &lt;option value="@yahoo.com"&gt;
+    &lt;option value="@outlook.com"&gt;
+  &lt;/datalist&gt;
+  &lt;button type="submit"&gt;Valider&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 9 -->
+      <article class="pattern" id="example-9">
+        <h3>9) Datalist avec recherche dynamique (API)</h3>
+        <p><strong>But</strong> : charger dynamiquement les suggestions depuis une API ou une source de données.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF - Tapez pour voir les suggestions se charger</span>
+          <div class="example-content">
+            <label for="dynamic-api-input">Recherchez une ville :</label>
+            <input 
+              type="text" 
+              id="dynamic-api-input" 
+              list="dynamic-api-list"
+              placeholder="Commencez à taper..."
+            />
+            <datalist id="dynamic-api-list"></datalist>
+            <p class="note">
+              💡 <strong>Note :</strong> Cet exemple simule une recherche avec un délai. En production, vous utiliseriez une vraie API.
+            </p>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="city"&gt;Recherchez une ville :&lt;/label&gt;
+&lt;input type="text" id="city" list="cities-list" /&gt;
+&lt;datalist id="cities-list"&gt;&lt;/datalist&gt;</code></pre>
+        </div>
+
+        <h4>JavaScript</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>// Simule une recherche avec délai (debounce)
+let searchTimeout;
+const cities = ['Paris', 'Lyon', 'Marseille', 'Toulouse', 'Nice', 'Nantes', 'Strasbourg', 'Montpellier', 'Bordeaux', 'Lille'];
+
+document.getElementById('city').addEventListener('input', function(e) {
+  clearTimeout(searchTimeout);
+  const searchTerm = e.target.value.toLowerCase();
+  
+  searchTimeout = setTimeout(() => {
+    const datalist = document.getElementById('cities-list');
+    datalist.innerHTML = '';
+    
+    if (searchTerm.length >= 2) {
+      const filtered = cities.filter(city => 
+        city.toLowerCase().includes(searchTerm)
+      );
+      
+      filtered.forEach(city => {
+        const option = document.createElement('option');
+        option.value = city;
+        datalist.appendChild(option);
+      });
+    }
+  }, 300); // Délai de 300ms
+});</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 10 -->
+      <article class="pattern" id="example-10">
+        <h3>10) Input type="search" avec datalist</h3>
+        <p><strong>But</strong> : créer un champ de recherche avec suggestions de recherche courantes.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="search-input">Rechercher :</label>
+            <input 
+              type="search" 
+              id="search-input" 
+              list="search-suggestions"
+              placeholder="Tapez votre recherche..."
+            />
+            <datalist id="search-suggestions">
+              <option value="HTML">
+              <option value="CSS">
+              <option value="JavaScript">
+              <option value="React">
+              <option value="Vue.js">
+              <option value="Angular">
+              <option value="Node.js">
+              <option value="Python">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="search"&gt;Rechercher :&lt;/label&gt;
+&lt;input type="search" id="search" list="search-suggestions" placeholder="Tapez votre recherche..." /&gt;
+&lt;datalist id="search-suggestions"&gt;
+  &lt;option value="HTML"&gt;
+  &lt;option value="CSS"&gt;
+  &lt;option value="JavaScript"&gt;
+  &lt;option value="React"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 11 -->
+      <article class="pattern" id="example-11">
+        <h3>11) Input type="url" avec datalist</h3>
+        <p><strong>But</strong> : suggérer des URLs courantes pour un champ de saisie d'URL.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="url-input">Site web :</label>
+            <input 
+              type="url" 
+              id="url-input" 
+              list="url-suggestions"
+              placeholder="https://example.com"
+            />
+            <datalist id="url-suggestions">
+              <option value="https://www.google.com">
+              <option value="https://www.github.com">
+              <option value="https://www.stackoverflow.com">
+              <option value="https://www.mozilla.org">
+              <option value="https://developer.mozilla.org">
+              <option value="https://www.w3.org">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="website"&gt;Site web :&lt;/label&gt;
+&lt;input type="url" id="website" list="url-suggestions" placeholder="https://example.com" /&gt;
+&lt;datalist id="url-suggestions"&gt;
+  &lt;option value="https://www.google.com"&gt;
+  &lt;option value="https://www.github.com"&gt;
+  &lt;option value="https://www.stackoverflow.com"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 12 -->
+      <article class="pattern" id="example-12">
+        <h3>12) Input type="tel" avec datalist</h3>
+        <p><strong>But</strong> : suggérer des formats de numéro de téléphone ou des numéros courants.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="tel-input">Numéro de téléphone :</label>
+            <input 
+              type="tel" 
+              id="tel-input" 
+              list="tel-formats"
+              placeholder="+33 1 23 45 67 89"
+            />
+            <datalist id="tel-formats">
+              <option value="+33 1 23 45 67 89">
+              <option value="+33 6 12 34 56 78">
+              <option value="+33 9 87 65 43 21">
+              <option value="01 23 45 67 89">
+              <option value="06 12 34 56 78">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="phone"&gt;Numéro de téléphone :&lt;/label&gt;
+&lt;input type="tel" id="phone" list="tel-formats" placeholder="+33 1 23 45 67 89" /&gt;
+&lt;datalist id="tel-formats"&gt;
+  &lt;option value="+33 1 23 45 67 89"&gt;
+  &lt;option value="+33 6 12 34 56 78"&gt;
+  &lt;option value="01 23 45 67 89"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 13 -->
+      <article class="pattern" id="example-13">
+        <h3>13) Input type="email" avec datalist</h3>
+        <p><strong>But</strong> : suggérer des domaines email courants pour faciliter la saisie.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="email-input">Email :</label>
+            <input 
+              type="email" 
+              id="email-input" 
+              list="email-domains-list"
+              placeholder="votre@email.com"
+            />
+            <datalist id="email-domains-list">
+              <option value="@gmail.com">
+              <option value="@yahoo.com">
+              <option value="@outlook.com">
+              <option value="@hotmail.com">
+              <option value="@icloud.com">
+              <option value="@protonmail.com">
+              <option value="@live.com">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="email"&gt;Email :&lt;/label&gt;
+&lt;input type="email" id="email" list="email-domains" placeholder="votre@email.com" /&gt;
+&lt;datalist id="email-domains"&gt;
+  &lt;option value="@gmail.com"&gt;
+  &lt;option value="@yahoo.com"&gt;
+  &lt;option value="@outlook.com"&gt;
+  &lt;option value="@hotmail.com"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 14 -->
+      <article class="pattern" id="example-14">
+        <h3>14) Input type="date" avec datalist</h3>
+        <p><strong>But</strong> : suggérer des dates importantes ou courantes (anniversaires, événements, etc.).</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="date-input-type">Date importante :</label>
+            <input 
+              type="date" 
+              id="date-input-type" 
+              list="important-dates"
+            />
+            <datalist id="important-dates">
+              <option value="2024-01-01" label="Nouvel An">
+              <option value="2024-12-25" label="Noël">
+              <option value="2024-07-14" label="Fête Nationale">
+              <option value="2024-05-01" label="Fête du Travail">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="date"&gt;Date importante :&lt;/label&gt;
+&lt;input type="date" id="date" list="important-dates" /&gt;
+&lt;datalist id="important-dates"&gt;
+  &lt;option value="2024-01-01" label="Nouvel An"&gt;
+  &lt;option value="2024-12-25" label="Noël"&gt;
+  &lt;option value="2024-07-14" label="Fête Nationale"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+        <p class="note">
+          💡 <strong>Note :</strong> Le support de datalist avec type="date" peut varier selon les navigateurs. Certains navigateurs peuvent ne pas afficher les suggestions.
+        </p>
+      </article>
+
+      <!-- Exemple 15 -->
+      <article class="pattern" id="example-15">
+        <h3>15) Input type="month" avec datalist</h3>
+        <p><strong>But</strong> : suggérer des mois spécifiques (trimestres, saisons, etc.).</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="month-input">Mois :</label>
+            <input 
+              type="month" 
+              id="month-input" 
+              list="months-list"
+            />
+            <datalist id="months-list">
+              <option value="2024-01" label="Janvier 2024">
+              <option value="2024-06" label="Juin 2024">
+              <option value="2024-12" label="Décembre 2024">
+              <option value="2025-01" label="Janvier 2025">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="month"&gt;Mois :&lt;/label&gt;
+&lt;input type="month" id="month" list="months-list" /&gt;
+&lt;datalist id="months-list"&gt;
+  &lt;option value="2024-01" label="Janvier 2024"&gt;
+  &lt;option value="2024-06" label="Juin 2024"&gt;
+  &lt;option value="2024-12" label="Décembre 2024"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 16 -->
+      <article class="pattern" id="example-16">
+        <h3>16) Input type="week" avec datalist</h3>
+        <p><strong>But</strong> : suggérer des semaines spécifiques (semaines de vacances, deadlines, etc.).</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="week-input">Semaine :</label>
+            <input 
+              type="week" 
+              id="week-input" 
+              list="weeks-list"
+            />
+            <datalist id="weeks-list">
+              <option value="2024-W01" label="Semaine 1 - 2024">
+              <option value="2024-W26" label="Semaine 26 - 2024">
+              <option value="2024-W52" label="Semaine 52 - 2024">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="week"&gt;Semaine :&lt;/label&gt;
+&lt;input type="week" id="week" list="weeks-list" /&gt;
+&lt;datalist id="weeks-list"&gt;
+  &lt;option value="2024-W01" label="Semaine 1 - 2024"&gt;
+  &lt;option value="2024-W26" label="Semaine 26 - 2024"&gt;
+  &lt;option value="2024-W52" label="Semaine 52 - 2024"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 17 -->
+      <article class="pattern" id="example-17">
+        <h3>17) Input type="time" avec datalist</h3>
+        <p><strong>But</strong> : suggérer des heures courantes (horaires d'ouverture, rendez-vous, etc.).</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="time-input">Heure :</label>
+            <input 
+              type="time" 
+              id="time-input" 
+              list="times-list"
+            />
+            <datalist id="times-list">
+              <option value="09:00" label="9h00">
+              <option value="12:00" label="12h00">
+              <option value="14:00" label="14h00">
+              <option value="17:00" label="17h00">
+              <option value="18:00" label="18h00">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="time"&gt;Heure :&lt;/label&gt;
+&lt;input type="time" id="time" list="times-list" /&gt;
+&lt;datalist id="times-list"&gt;
+  &lt;option value="09:00" label="9h00"&gt;
+  &lt;option value="12:00" label="12h00"&gt;
+  &lt;option value="14:00" label="14h00"&gt;
+  &lt;option value="17:00" label="17h00"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 18 -->
+      <article class="pattern" id="example-18">
+        <h3>18) Input type="datetime-local" avec datalist</h3>
+        <p><strong>But</strong> : suggérer des dates et heures spécifiques (rendez-vous, événements, etc.).</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="datetime-input">Date et heure :</label>
+            <input 
+              type="datetime-local" 
+              id="datetime-input" 
+              list="datetime-list"
+            />
+            <datalist id="datetime-list">
+              <option value="2024-12-25T10:00" label="Noël 10h00">
+              <option value="2024-12-31T23:59" label="Réveillon">
+              <option value="2025-01-01T00:00" label="Nouvel An">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="datetime"&gt;Date et heure :&lt;/label&gt;
+&lt;input type="datetime-local" id="datetime" list="datetime-list" /&gt;
+&lt;datalist id="datetime-list"&gt;
+  &lt;option value="2024-12-25T10:00" label="Noël 10h00"&gt;
+  &lt;option value="2024-12-31T23:59" label="Réveillon"&gt;
+  &lt;option value="2025-01-01T00:00" label="Nouvel An"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 19 -->
+      <article class="pattern" id="example-19">
+        <h3>19) Input type="number" avec datalist</h3>
+        <p><strong>But</strong> : suggérer des valeurs numériques courantes (prix, quantités, tailles, etc.).</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="number-input">Prix (€) :</label>
+            <input 
+              type="number" 
+              id="number-input" 
+              list="prices-list"
+              min="0"
+              step="0.01"
+              placeholder="0.00"
+            />
+            <datalist id="prices-list">
+              <option value="9.99">
+              <option value="19.99">
+              <option value="29.99">
+              <option value="49.99">
+              <option value="99.99">
+              <option value="199.99">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="price"&gt;Prix (€) :&lt;/label&gt;
+&lt;input type="number" id="price" list="prices-list" min="0" step="0.01" placeholder="0.00" /&gt;
+&lt;datalist id="prices-list"&gt;
+  &lt;option value="9.99"&gt;
+  &lt;option value="19.99"&gt;
+  &lt;option value="29.99"&gt;
+  &lt;option value="49.99"&gt;
+  &lt;option value="99.99"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 20 -->
+      <article class="pattern" id="example-20">
+        <h3>20) Input type="color" avec datalist</h3>
+        <p><strong>But</strong> : suggérer des couleurs prédéfinies en plus du sélecteur de couleur natif.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="color-input-type">Couleur :</label>
+            <input 
+              type="color" 
+              id="color-input-type" 
+              list="color-palette"
+              value="#6366f1"
+            />
+            <datalist id="color-palette">
+              <option value="#FF0000" label="Rouge">
+              <option value="#00FF00" label="Vert">
+              <option value="#0000FF" label="Bleu">
+              <option value="#FFFF00" label="Jaune">
+              <option value="#FF00FF" label="Magenta">
+              <option value="#00FFFF" label="Cyan">
+              <option value="#6366f1" label="Indigo">
+              <option value="#000000" label="Noir">
+              <option value="#FFFFFF" label="Blanc">
+            </datalist>
+            <p class="note">
+              💡 <strong>Note :</strong> Le support de datalist avec type="color" peut varier selon les navigateurs. Certains navigateurs peuvent ne pas afficher les suggestions de couleur.
+            </p>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="color"&gt;Couleur :&lt;/label&gt;
+&lt;input type="color" id="color" list="color-palette" value="#6366f1" /&gt;
+&lt;datalist id="color-palette"&gt;
+  &lt;option value="#FF0000" label="Rouge"&gt;
+  &lt;option value="#00FF00" label="Vert"&gt;
+  &lt;option value="#0000FF" label="Bleu"&gt;
+  &lt;option value="#FFFF00" label="Jaune"&gt;
+  &lt;option value="#6366f1" label="Indigo"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <hr />
+
+      <!-- Select vs Datalist -->
+      <section id="select-vs-datalist-section">
+        <h2>🔄 Select vs Datalist : Quand utiliser quoi ?</h2>
+        <p>Comprendre les différences et choisir le bon élément selon vos besoins.</p>
+
+        <div class="guide-content">
+          <div class="guide-box">
+            <h3>✅ Utilisez <code>&lt;select&gt;</code> quand :</h3>
+            <ul>
+              <li>✅ L'utilisateur <strong>doit</strong> choisir parmi des options prédéfinies</li>
+              <li>✅ Vous avez besoin d'une validation stricte</li>
+              <li>✅ Vous voulez une sélection multiple (<code>multiple</code>)</li>
+              <li>✅ Vous avez peu d'options (moins de 20)</li>
+              <li>✅ Vous voulez un comportement natif simple</li>
+            </ul>
+          </div>
+          <div class="guide-box">
+            <h3>✅ Utilisez <code>&lt;datalist&gt;</code> quand :</h3>
+            <ul>
+              <li>✅ L'utilisateur peut saisir une valeur personnalisée</li>
+              <li>✅ Vous voulez des suggestions mais pas de restriction</li>
+              <li>✅ Vous avez beaucoup d'options (recherche native)</li>
+              <li>✅ Vous voulez une expérience de type "autocomplétion"</li>
+              <li>✅ Vous voulez que l'utilisateur puisse taper librement</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Tableau comparatif</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Caractéristique</th>
+              <th>Select</th>
+              <th>Datalist</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Saisie libre</strong></td>
+              <td>❌ Non</td>
+              <td>✅ Oui</td>
+            </tr>
+            <tr>
+              <td><strong>Sélection multiple</strong></td>
+              <td>✅ Oui (<code>multiple</code>)</td>
+              <td>❌ Non</td>
+            </tr>
+            <tr>
+              <td><strong>Recherche native</strong></td>
+              <td>⚠️ Limitée</td>
+              <td>✅ Oui</td>
+            </tr>
+            <tr>
+              <td><strong>Validation stricte</strong></td>
+              <td>✅ Oui</td>
+              <td>❌ Non</td>
+            </tr>
+            <tr>
+              <td><strong>Mobile</strong></td>
+              <td>✅ Excellent</td>
+              <td>⚠️ Variable</td>
+            </tr>
+            <tr>
+              <td><strong>Accessibilité</strong></td>
+              <td>✅ Excellent</td>
+              <td>✅ Bon</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <hr />
+
+      <!-- Section Select -->
+      <section id="select-section">
+        <h2>📋 Select, Multiple et Searchable</h2>
+        <p>
+          L'élément <code>&lt;select&gt;</code> permet de créer des listes déroulantes. 
+          Contrairement à <code>&lt;datalist&gt;</code>, l'utilisateur <strong>doit</strong> choisir parmi les options proposées.
+        </p>
+      </section>
+
+      <!-- Select de base -->
+      <article class="pattern" id="select-basic">
+        <h3>1) Select de base</h3>
+        <p><strong>But</strong> : créer une liste déroulante simple avec une seule sélection.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="basic-select">Choisissez un navigateur :</label>
+            <select 
+              id="basic-select" 
+              name="browser"
+            >
+              <option value="">-- Sélectionnez --</option>
+              <option value="chrome">Chrome</option>
+              <option value="firefox">Firefox</option>
+              <option value="safari">Safari</option>
+              <option value="edge">Edge</option>
+              <option value="opera">Opera</option>
+            </select>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="browser"&gt;Choisissez un navigateur :&lt;/label&gt;
+&lt;select id="browser" name="browser"&gt;
+  &lt;option value=""&gt;-- Sélectionnez --&lt;/option&gt;
+  &lt;option value="chrome"&gt;Chrome&lt;/option&gt;
+  &lt;option value="firefox"&gt;Firefox&lt;/option&gt;
+  &lt;option value="safari"&gt;Safari&lt;/option&gt;
+  &lt;option value="edge"&gt;Edge&lt;/option&gt;
+  &lt;option value="opera"&gt;Opera&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #6366f1;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+select:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+select:hover {
+  border-color: #4f46e5;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;select class="w-full p-2.5 border-2 border-indigo-500 rounded-lg text-base bg-white cursor-pointer transition-colors hover:border-indigo-600 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-200"&gt;
+  &lt;option value=""&gt;-- Sélectionnez --&lt;/option&gt;
+  &lt;option value="chrome"&gt;Chrome&lt;/option&gt;
+  &lt;option value="firefox"&gt;Firefox&lt;/option&gt;
+  &lt;option value="safari"&gt;Safari&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Select Multiple -->
+      <article class="pattern" id="select-multiple">
+        <h3>2) Select Multiple</h3>
+        <p>
+          <strong>But</strong> : permettre la sélection de plusieurs options simultanément. 
+          L'utilisateur peut maintenir <kbd>Ctrl</kbd> (Windows/Linux) ou <kbd>Cmd</kbd> (Mac) pour sélectionner plusieurs options.
+        </p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF - Maintenez Ctrl/Cmd pour sélectionner plusieurs options</span>
+          <div class="example-content">
+            <label for="multiple-select">Choisissez vos langages préférés :</label>
+            <select 
+              id="multiple-select" 
+              name="languages"
+              multiple
+              size="5"
+            >
+              <option value="javascript">JavaScript</option>
+              <option value="typescript">TypeScript</option>
+              <option value="python">Python</option>
+              <option value="java">Java</option>
+              <option value="cpp">C++</option>
+              <option value="csharp">C#</option>
+              <option value="php">PHP</option>
+              <option value="ruby">Ruby</option>
+              <option value="go">Go</option>
+              <option value="rust">Rust</option>
+            </select>
+            <p class="note">
+              💡 <strong>Astuce :</strong> Maintenez <kbd>Ctrl</kbd> (Windows/Linux) ou <kbd>Cmd</kbd> (Mac) et cliquez pour sélectionner plusieurs options.
+            </p>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="languages"&gt;Choisissez vos langages :&lt;/label&gt;
+&lt;select id="languages" name="languages" multiple size="5"&gt;
+  &lt;option value="javascript"&gt;JavaScript&lt;/option&gt;
+  &lt;option value="typescript"&gt;TypeScript&lt;/option&gt;
+  &lt;option value="python"&gt;Python&lt;/option&gt;
+  &lt;option value="java"&gt;Java&lt;/option&gt;
+  &lt;option value="cpp"&gt;C++&lt;/option&gt;
+  &lt;option value="csharp"&gt;C#&lt;/option&gt;
+  &lt;option value="php"&gt;PHP&lt;/option&gt;
+  &lt;option value="ruby"&gt;Ruby&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+        </div>
+
+        <h4>Attributs importants</h4>
+        <ul>
+          <li><code>multiple</code> : Active la sélection multiple</li>
+          <li><code>size</code> : Définit le nombre d'options visibles (sans scroll)</li>
+        </ul>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>select[multiple] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #6366f1;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  min-height: 150px;
+}
+
+select[multiple] option {
+  padding: 8px;
+  cursor: pointer;
+}
+
+select[multiple] option:checked {
+  background-color: #6366f1;
+  color: white;
+}
+
+select[multiple]:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}</code></pre>
+        </div>
+
+        <h4>JavaScript - Récupérer les valeurs sélectionnées</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>// Récupérer toutes les valeurs sélectionnées
+const select = document.getElementById('languages');
+const selectedValues = Array.from(select.selectedOptions)
+  .map(option => option.value);
+
+console.log('Valeurs sélectionnées:', selectedValues);
+
+// Écouter les changements
+select.addEventListener('change', function() {
+  const selected = Array.from(this.selectedOptions)
+    .map(option => option.value);
+  console.log('Nouvelles sélections:', selected);
+});</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;select 
+  multiple 
+  size="5"
+  class="w-full p-2.5 border-2 border-indigo-500 rounded-lg text-base bg-white min-h-[150px] focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-200"
+&gt;
+  &lt;option value="javascript"&gt;JavaScript&lt;/option&gt;
+  &lt;option value="typescript"&gt;TypeScript&lt;/option&gt;
+  &lt;option value="python"&gt;Python&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Select Searchable -->
+      <article class="pattern" id="select-searchable">
+        <h3>3) Select Searchable (Recherchable)</h3>
+        <p>
+          <strong>But</strong> : créer un select avec fonctionnalité de recherche/filtrage. 
+          HTML natif ne supporte pas directement la recherche dans un select, mais on peut utiliser 
+          <code>&lt;datalist&gt;</code> ou créer une solution personnalisée avec JavaScript.
+        </p>
+
+        <h4>Méthode 1 : Utiliser Datalist (Recommandé)</h4>
+        <p>La méthode la plus simple et native pour un select searchable est d'utiliser <code>&lt;datalist&gt;</code>.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF - Tapez pour filtrer</span>
+          <div class="example-content">
+            <label for="searchable-datalist">Recherchez un pays :</label>
+            <input 
+              type="text" 
+              id="searchable-datalist" 
+              list="countries-list"
+              placeholder="Commencez à taper..."
+            />
+            <datalist id="countries-list">
+              <option value="France">🇫🇷</option>
+              <option value="Espagne">🇪🇸</option>
+              <option value="Allemagne">🇩🇪</option>
+              <option value="Italie">🇮🇹</option>
+              <option value="Royaume-Uni">🇬🇧</option>
+              <option value="Belgique">🇧🇪</option>
+              <option value="Suisse">🇨🇭</option>
+              <option value="Canada">🇨🇦</option>
+              <option value="États-Unis">🇺🇸</option>
+              <option value="Japon">🇯🇵</option>
+              <option value="Chine">🇨🇳</option>
+              <option value="Brésil">🇧🇷</option>
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML (Datalist)</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="country"&gt;Recherchez un pays :&lt;/label&gt;
+&lt;input 
+  type="text" 
+  id="country" 
+  list="countries-list"
+  placeholder="Commencez à taper..."
+/&gt;
+&lt;datalist id="countries-list"&gt;
+  &lt;option value="France"&gt;🇫🇷&lt;/option&gt;
+  &lt;option value="Espagne"&gt;🇪🇸&lt;/option&gt;
+  &lt;option value="Allemagne"&gt;🇩🇪&lt;/option&gt;
+  &lt;option value="Italie"&gt;🇮🇹&lt;/option&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+
+        <h4>Méthode 2 : Select Searchable avec JavaScript</h4>
+        <p>Pour un vrai <code>&lt;select&gt;</code> avec recherche, on crée une solution personnalisée.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF - Select avec recherche</span>
+          <div class="example-content">
+            <label for="searchable-select-input">Recherchez un langage :</label>
+            <div style="position: relative;">
+              <input 
+                type="text" 
+                id="searchable-select-input" 
+                placeholder="Tapez pour rechercher..."
+                autocomplete="off"
+              />
+              <select 
+                id="searchable-select" 
+                name="language"
+              >
+                <option value="">-- Sélectionnez --</option>
+                <option value="javascript">JavaScript</option>
+                <option value="typescript">TypeScript</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="cpp">C++</option>
+                <option value="csharp">C#</option>
+                <option value="php">PHP</option>
+                <option value="ruby">Ruby</option>
+                <option value="go">Go</option>
+                <option value="rust">Rust</option>
+                <option value="swift">Swift</option>
+                <option value="kotlin">Kotlin</option>
+              </select>
+              <div id="searchable-dropdown" style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; border: 2px solid #6366f1; border-top: none; border-radius: 0 0 8px 8px; max-height: 200px; overflow-y: auto; z-index: 1000; margin-top: -2px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <h4>HTML (Select Searchable)</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="searchable-input"&gt;Recherchez un langage :&lt;/label&gt;
+&lt;div style="position: relative;"&gt;
+  &lt;input 
+    type="text" 
+    id="searchable-input" 
+    placeholder="Tapez pour rechercher..."
+    autocomplete="off"
+  /&gt;
+  &lt;select id="searchable-select" name="language" style="display: none;"&gt;
+    &lt;option value=""&gt;-- Sélectionnez --&lt;/option&gt;
+    &lt;option value="javascript"&gt;JavaScript&lt;/option&gt;
+    &lt;option value="typescript"&gt;TypeScript&lt;/option&gt;
+    &lt;option value="python"&gt;Python&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;div id="searchable-dropdown"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>JavaScript (Select Searchable)</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>document.addEventListener('DOMContentLoaded', function() {
+  const input = document.getElementById('searchable-input');
+  const select = document.getElementById('searchable-select');
+  const dropdown = document.getElementById('searchable-dropdown');
+  const options = Array.from(select.options);
+
+  // Afficher le dropdown au focus
+  input.addEventListener('focus', function() {
+    filterOptions();
+    dropdown.style.display = 'block';
+  });
+
+  // Filtrer les options lors de la saisie
+  input.addEventListener('input', filterOptions);
+
+  // Fermer le dropdown si on clique en dehors
+  document.addEventListener('click', function(e) {
+    if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.style.display = 'none';
+    }
+  });
+
+  function filterOptions() {
+    const searchTerm = input.value.toLowerCase();
+    const filtered = options.filter(opt => 
+      opt.text.toLowerCase().includes(searchTerm)
+    );
+
+    dropdown.innerHTML = '';
+    
+    filtered.forEach(option => {
+      if (option.value === '') return; // Ignorer l'option vide
+      
+      const div = document.createElement('div');
+      div.textContent = option.text;
+      div.style.padding = '10px';
+      div.style.cursor = 'pointer';
+      div.style.borderBottom = '1px solid #e5e7eb';
+      
+      div.addEventListener('mouseenter', function() {
+        this.style.backgroundColor = '#f3f4f6';
+      });
+      
+      div.addEventListener('mouseleave', function() {
+        this.style.backgroundColor = 'white';
+      });
+      
+      div.addEventListener('click', function() {
+        input.value = option.text;
+        select.value = option.value;
+        dropdown.style.display = 'none';
+      });
+      
+      dropdown.appendChild(div);
+    });
+
+    if (filtered.length === 0) {
+      const noResults = document.createElement('div');
+      noResults.textContent = 'Aucun résultat';
+      noResults.style.padding = '10px';
+      noResults.style.color = '#6b7280';
+      dropdown.appendChild(noResults);
+    }
+  }
+});</code></pre>
+        </div>
+      </article>
+
+      <!-- Select avec optgroup -->
+      <article class="pattern" id="select-optgroup">
+        <h3>5) Select avec optgroup (groupes)</h3>
+        <p><strong>But</strong> : organiser les options en groupes logiques pour une meilleure organisation.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="optgroup-select">Choisissez un framework :</label>
+            <select 
+              id="optgroup-select" 
+              name="framework"
+            >
+              <option value="">-- Sélectionnez --</option>
+              <optgroup label="Frontend">
+                <option value="react">React</option>
+                <option value="vue">Vue.js</option>
+                <option value="angular">Angular</option>
+                <option value="svelte">Svelte</option>
+              </optgroup>
+              <optgroup label="Backend">
+                <option value="express">Express</option>
+                <option value="nestjs">NestJS</option>
+                <option value="fastapi">FastAPI</option>
+                <option value="django">Django</option>
+              </optgroup>
+              <optgroup label="Full-stack">
+                <option value="nextjs">Next.js</option>
+                <option value="nuxtjs">Nuxt.js</option>
+                <option value="remix">Remix</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="framework"&gt;Choisissez un framework :&lt;/label&gt;
+&lt;select id="framework" name="framework"&gt;
+  &lt;option value=""&gt;-- Sélectionnez --&lt;/option&gt;
+  &lt;optgroup label="Frontend"&gt;
+    &lt;option value="react"&gt;React&lt;/option&gt;
+    &lt;option value="vue"&gt;Vue.js&lt;/option&gt;
+    &lt;option value="angular"&gt;Angular&lt;/option&gt;
+  &lt;/optgroup&gt;
+  &lt;optgroup label="Backend"&gt;
+    &lt;option value="express"&gt;Express&lt;/option&gt;
+    &lt;option value="nestjs"&gt;NestJS&lt;/option&gt;
+  &lt;/optgroup&gt;
+&lt;/select&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Select avec disabled -->
+      <article class="pattern" id="select-disabled">
+        <h3>6) Select avec options désactivées</h3>
+        <p><strong>But</strong> : désactiver certaines options pour indiquer qu'elles ne sont pas disponibles.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="disabled-select">Choisissez un plan :</label>
+            <select 
+              id="disabled-select" 
+              name="plan"
+            >
+              <option value="">-- Sélectionnez un plan --</option>
+              <option value="free">Gratuit</option>
+              <option value="basic">Basique - 9.99€/mois</option>
+              <option value="pro" disabled>Pro - 19.99€/mois (Bientôt disponible)</option>
+              <option value="enterprise" disabled>Enterprise - Sur devis (Contactez-nous)</option>
+            </select>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="plan"&gt;Choisissez un plan :&lt;/label&gt;
+&lt;select id="plan" name="plan"&gt;
+  &lt;option value=""&gt;-- Sélectionnez un plan --&lt;/option&gt;
+  &lt;option value="free"&gt;Gratuit&lt;/option&gt;
+  &lt;option value="basic"&gt;Basique - 9.99€/mois&lt;/option&gt;
+  &lt;option value="pro" disabled&gt;Pro - 19.99€/mois (Bientôt disponible)&lt;/option&gt;
+  &lt;option value="enterprise" disabled&gt;Enterprise - Sur devis&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Select avec validation -->
+      <article class="pattern" id="select-validation">
+        <h3>7) Select avec validation HTML5</h3>
+        <p><strong>But</strong> : utiliser la validation native pour s'assurer qu'une option est sélectionnée.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF - Essayez de soumettre sans sélectionner</span>
+          <div class="example-content">
+            <form id="select-validation-form" onsubmit="event.preventDefault(); alert('Formulaire valide !');">
+              <label for="validated-select">Pays (requis) :</label>
+              <select 
+                id="validated-select" 
+                name="country"
+                required
+              >
+                <option value="">-- Sélectionnez un pays --</option>
+                <option value="fr">France</option>
+                <option value="be">Belgique</option>
+                <option value="ch">Suisse</option>
+                <option value="ca">Canada</option>
+                <option value="us">États-Unis</option>
+              </select>
+              <button type="submit">Valider</button>
+            </form>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;form&gt;
+  &lt;label for="country"&gt;Pays (requis) :&lt;/label&gt;
+  &lt;select id="country" name="country" required&gt;
+    &lt;option value=""&gt;-- Sélectionnez un pays --&lt;/option&gt;
+    &lt;option value="fr"&gt;France&lt;/option&gt;
+    &lt;option value="be"&gt;Belgique&lt;/option&gt;
+    &lt;option value="ch"&gt;Suisse&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;button type="submit"&gt;Valider&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        </div>
+      </article>
+
+      <hr />
+
+      <!-- Utilisation avancée -->
+      <section id="advanced">
+        <h2>⚙️ Utilisation avancée</h2>
+
+        <h3>Datalist avec input type="range"</h3>
+        <p>Vous pouvez utiliser datalist avec <code>type="range"</code> pour afficher des marqueurs sur une plage.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="range-input">Volume (0-100) :</label>
+            <input 
+              type="range" 
+              id="range-input" 
+              min="0" 
+              max="100" 
+              value="50"
+              list="volume-markers"
+            />
+            <datalist id="volume-markers">
+              <option value="0" label="0%">
+              <option value="25" label="25%">
+              <option value="50" label="50%">
+              <option value="75" label="75%">
+              <option value="100" label="100%">
+            </datalist>
+            <p style="margin-top: 12px; text-align: center; font-weight: 600;" id="range-value">50</p>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="volume"&gt;Volume :&lt;/label&gt;
+&lt;input 
+  type="range" 
+  id="volume" 
+  min="0" 
+  max="100" 
+  list="volume-markers" 
+/&gt;
+&lt;datalist id="volume-markers"&gt;
+  &lt;option value="0" label="0%"&gt;
+  &lt;option value="25" label="25%"&gt;
+  &lt;option value="50" label="50%"&gt;
+  &lt;option value="75" label="75%"&gt;
+  &lt;option value="100" label="100%"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+
+        <h3>Datalist dynamique avec JavaScript</h3>
+        <p>Vous pouvez générer dynamiquement les options d'un datalist avec JavaScript.</p>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>// Créer un datalist dynamiquement
+const datalist = document.getElementById('myDatalist');
+const options = ['Option 1', 'Option 2', 'Option 3'];
+
+options.forEach(option => {
+  const optionElement = document.createElement('option');
+  optionElement.value = option;
+  datalist.appendChild(optionElement);
+});</code></pre>
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- Accessibilité -->
+      <section id="accessibility">
+        <h2>♿ Accessibilité</h2>
+        <div class="guide-content">
+          <div class="guide-box">
+            <h3>✅ Bonnes pratiques</h3>
+            <ul>
+              <li>✅ Utilisez toujours un <code>&lt;label&gt;</code> associé à l'input</li>
+              <li>✅ Ajoutez un <code>placeholder</code> pour guider l'utilisateur</li>
+              <li>✅ Utilisez des valeurs descriptives dans les options</li>
+              <li>✅ Testez avec un lecteur d'écran</li>
+            </ul>
+          </div>
+          <div class="guide-box">
+            <h3>⚠️ Points d'attention</h3>
+            <ul>
+              <li>⚠️ Les datalist ne sont pas toujours bien supportés sur mobile</li>
+              <li>⚠️ Certains navigateurs anciens ne les supportent pas</li>
+              <li>⚠️ Pensez à une solution de fallback si nécessaire</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Exemple accessible</h3>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="accessible-input"&gt;
+  Choisissez une option
+  &lt;span aria-label="Liste de suggestions disponible"&gt;*&lt;/span&gt;
+&lt;/label&gt;
+&lt;input 
+  type="text" 
+  id="accessible-input" 
+  list="accessible-list"
+  placeholder="Commencez à taper pour voir les suggestions"
+  aria-describedby="help-text"
+/&gt;
+&lt;datalist id="accessible-list"&gt;
+  &lt;option value="Option 1"&gt;
+  &lt;option value="Option 2"&gt;
+&lt;/datalist&gt;
+&lt;small id="help-text"&gt;Vous pouvez choisir une suggestion ou saisir votre propre valeur&lt;/small&gt;</code></pre>
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- Compatibilité navigateurs -->
+      <section id="browser-support">
+        <h2>🌐 Compatibilité navigateurs</h2>
+        <p>L'élément <code>&lt;datalist&gt;</code> est bien supporté dans les navigateurs modernes :</p>
+        <ul>
+          <li>✅ Chrome/Edge : Support complet depuis la version 20+</li>
+          <li>✅ Firefox : Support complet depuis la version 4+</li>
+          <li>✅ Safari : Support complet depuis la version 12.1+</li>
+          <li>✅ Opera : Support complet depuis la version 9.5+</li>
+          <li>⚠️ Internet Explorer : Non supporté (utilisez un polyfill si nécessaire)</li>
+        </ul>
+
+        <p class="note">
+          💡 <strong>Astuce :</strong> Pour les navigateurs qui ne supportent pas datalist, l'input fonctionne toujours normalement, 
+          mais sans les suggestions. Vous pouvez ajouter un fallback JavaScript si nécessaire.
+        </p>
+      </section>
+
+      <hr />
+
+      <section>
+        <h2>💡 Conseils et bonnes pratiques</h2>
+        <ul>
+          <li>
+            <strong>Performance :</strong> Pour de grandes listes (100+ options), considérez l'utilisation de JavaScript 
+            pour charger les options dynamiquement selon la saisie de l'utilisateur.
+          </li>
+          <li>
+            <strong>UX :</strong> Limitez le nombre d'options affichées (10-20) pour une meilleure expérience utilisateur.
+          </li>
+          <li>
+            <strong>Validation :</strong> Utilisez l'attribut <code>pattern</code> sur l'input pour valider la saisie si nécessaire.
+          </li>
+          <li>
+            <strong>Mobile :</strong> Testez sur mobile car le comportement peut varier selon les navigateurs.
+          </li>
+        </ul>
+      </section>
+    </main>
+    
+    <!-- Bouton retour en haut -->
+    <button id="back-to-top" class="back-to-top" aria-label="Retour en haut de la page">
+      ↑
+    </button>
+    
+    <script src="../commun.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation Flex & Grid</title>
+    <link rel="stylesheet" href="../commum.css">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Menu de navigation latéral -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2><a href="../index.html">📚 Documentation</a></h2>
+      </div>
+      <div class="sidebar-content">
+        <ul class="nav-menu">
+          <li><a href="#top" class="nav-link">🏠 Accueil</a></li>
+          <li><a href="#guide-section" class="nav-link">🎯 Guide Flex vs Grid</a></li>
+          <li class="nav-section">
+            <span class="nav-section-title">Flexbox</span>
+            <ul class="nav-submenu">
+              <li><a href="#pattern-1" class="nav-link">1) Centre exact</a></li>
+              <li><a href="#pattern-2" class="nav-link">2) Row space-between</a></li>
+              <li><a href="#pattern-3" class="nav-link">3) Column responsive</a></li>
+              <li><a href="#pattern-4" class="nav-link">4) Wrap & items égaux</a></li>
+              <li><a href="#pattern-5" class="nav-link">5) Order control</a></li>
+              <li><a href="#pattern-9" class="nav-link">9) Sticky header</a></li>
+              <li><a href="#pattern-11" class="nav-link">11) Align-self</a></li>
+              <li><a href="#pattern-13" class="nav-link">13) Flex grow/shrink</a></li>
+              <li><a href="#pattern-15" class="nav-link">15) Flex wrap center</a></li>
+              <li><a href="#pattern-17" class="nav-link">17) Space-around</a></li>
+              <li><a href="#pattern-19" class="nav-link">19) Align-content</a></li>
+              <li><a href="#pattern-21" class="nav-link">21) Flex-basis</a></li>
+              <li><a href="#pattern-23" class="nav-link">23) Flex-basis calculé</a></li>
+            </ul>
+          </li>
+          <li class="nav-section">
+            <span class="nav-section-title">Grid</span>
+            <ul class="nav-submenu">
+              <li><a href="#pattern-6" class="nav-link">6) Grid 2→3 colonnes</a></li>
+              <li><a href="#pattern-7" class="nav-link">7) Auto-fit / minmax</a></li>
+              <li><a href="#pattern-8" class="nav-link">8) Zones nommées</a></li>
+              <li><a href="#pattern-10" class="nav-link">10) Masonry-like</a></li>
+              <li><a href="#pattern-12" class="nav-link">12) Grid imbriqué</a></li>
+              <li><a href="#pattern-14" class="nav-link">14) Grid avec span</a></li>
+              <li><a href="#pattern-16" class="nav-link">16) Auto-rows</a></li>
+              <li><a href="#pattern-18" class="nav-link">18) fr, auto, fixe</a></li>
+              <li><a href="#pattern-20" class="nav-link">20) Lignes nommées</a></li>
+              <li><a href="#pattern-22" class="nav-link">22) Grid imbriqué avancé</a></li>
+              <li><a href="#pattern-24" class="nav-link">24) Minmax max-content</a></li>
+            </ul>
+          </li>
+          <li><a href="#extras" class="nav-link">💡 Extras & Tips</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Bouton pour ouvrir/fermer le menu sur mobile -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir/Fermer le menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <main id="top">
+      <h1>Documentation Flex & Grid (HTML / CSS / Tailwind)</h1>
+      <blockquote>
+        Pour chaque pattern :
+        <strong>exemple interactif</strong>, aperçu, HTML + CSS pur, puis
+        équivalent <strong>Tailwind (className)</strong>.
+      </blockquote>
+
+      <!-- Section "Quand utiliser quoi" -->
+      <section class="guide-section" id="guide-section">
+        <h2>🎯 Quand utiliser Flex vs Grid ?</h2>
+        <div class="guide-content">
+          <div class="guide-box">
+            <h3>Flexbox - Utilisez pour :</h3>
+            <ul>
+              <li>✅ Aligner des éléments dans une <strong>direction</strong> (row ou column)</li>
+              <li>✅ Distribuer l'espace entre des éléments</li>
+              <li>✅ Centrer du contenu (vertical + horizontal)</li>
+              <li>✅ Créer des barres de navigation, headers</li>
+              <li>✅ Layouts 1D (une dimension)</li>
+              <li>✅ Contrôler l'ordre des éléments (order)</li>
+              <li>✅ Espacement flexible entre items</li>
+            </ul>
+          </div>
+          <div class="guide-box">
+            <h3>Grid - Utilisez pour :</h3>
+            <ul>
+              <li>✅ Créer des <strong>layouts 2D</strong> (lignes + colonnes)</li>
+              <li>✅ Galeries de photos, cartes alignées</li>
+              <li>✅ Layouts complexes avec zones nommées</li>
+              <li>✅ Contrôler précisément les colonnes/lignes</li>
+              <li>✅ Responsive automatique (auto-fit, minmax)</li>
+              <li>✅ Overlap d'éléments</li>
+              <li>✅ Alignement précis sur les deux axes</li>
+            </ul>
+          </div>
+        </div>
+        <p class="note" style="margin-top: 16px;">
+          💡 <strong>Astuce :</strong> Vous pouvez combiner les deux ! Utilisez Grid pour le layout principal et Flexbox pour aligner le contenu à l'intérieur des cellules.
+        </p>
+      </section>
+      <hr />
+
+      <h2>Patterns</h2>
+
+      <article class="pattern" id="pattern-1">
+        <h3>1) Centre exact (vertical + horizontal)</h3>
+        <p><strong>But</strong> : centrer un élément dans son parent.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="ex1-wrap">
+            <div class="ex1-card">Centré ✨</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="wrap"&gt;
+  &lt;div class="card"&gt;Centré&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.wrap {
+  height: 300px;
+  border: 1px dashed #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="h-[300px] border border-dashed border-gray-300 flex justify-center items-center"&gt;
+  &lt;div class="p-4 bg-white rounded-lg shadow"&gt;Centré&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-2">
+        <h3>2) Row — space-between (barre d'outils / header)</h3>
+        <p>
+          <strong>But</strong> : créer une ligne avec éléments espacés aux
+          extrémités.
+        </p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <header class="ex2-row">
+            <div class="ex2-logo">MonLogo</div>
+            <nav class="ex2-nav">
+              <a href="#">Accueil</a>
+              <a href="#">À propos</a>
+              <a href="#">Contact</a>
+            </nav>
+          </header>
+        </div>
+
+        <h4>HTML</h4>
+        <pre><code>&lt;header class="row"&gt;
+  &lt;div class="logo"&gt;Logo&lt;/div&gt;
+  &lt;nav class="nav"&gt;Menu&lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+
+        <h4>CSS pur</h4>
+        <pre><code>.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+}</code></pre>
+
+        <h4>Tailwind</h4>
+        <pre><code>&lt;header class="flex justify-between items-center p-3"&gt;
+  &lt;div&gt;Logo&lt;/div&gt;
+  &lt;nav&gt;Menu&lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+      </article>
+
+      <article class="pattern" id="pattern-3">
+        <h3>3) Column layout responsive (sidebar + content)</h3>
+        <p>
+          <strong>But</strong> : colonne sur mobile, deux colonnes sur desktop.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Redimensionnez la fenêtre</span
+          >
+          <div class="ex3-wrap">
+            <aside class="ex3-side">Sidebar 📱→💻</aside>
+            <main class="ex3-main">
+              Main content - Cet espace s'agrandit sur desktop
+            </main>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <pre><code>&lt;div class="wrap"&gt;
+  &lt;aside class="side"&gt;Sidebar&lt;/aside&gt;
+  &lt;main class="main"&gt;Main content&lt;/main&gt;
+&lt;/div&gt;</code></pre>
+
+        <h4>CSS pur</h4>
+        <pre><code>.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+@media (min-width: 800px) {
+  .wrap {
+    flex-direction: row;
+  }
+  .side {
+    width: 260px;
+  }
+  .main {
+    flex: 1;
+  }
+}</code></pre>
+
+        <h4>Tailwind</h4>
+        <pre><code>&lt;div class="flex flex-col gap-4 md:flex-row"&gt;
+  &lt;aside class="md:w-64"&gt;Sidebar&lt;/aside&gt;
+  &lt;main class="flex-1"&gt;Main content&lt;/main&gt;
+&lt;/div&gt;</code></pre>
+      </article>
+
+      <article class="pattern" id="pattern-4">
+        <h3>4) Wrap & items width égale (badges / cards grid)</h3>
+        <p>
+          <strong>But</strong> : rangée qui wrap avec des éléments de largeur
+          égale.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Les items s'adaptent</span
+          >
+          <div class="ex4-chips">
+            <div class="ex4-chip">React ⚛️</div>
+            <div class="ex4-chip">Vue 💚</div>
+            <div class="ex4-chip">Angular 🅰️</div>
+            <div class="ex4-chip">Svelte 🧡</div>
+            <div class="ex4-chip">Next.js ▲</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <pre><code>&lt;div class="chips"&gt;
+  &lt;div class="chip"&gt;One&lt;/div&gt;
+  &lt;div class="chip"&gt;Two&lt;/div&gt;
+  &lt;div class="chip"&gt;Three&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <h4>CSS pur</h4>
+        <pre><code>.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.chip {
+  flex: 1 1 160px;
+  padding: 12px;
+  background: #f8f8f8;
+  border-radius: 8px;
+  text-align: center;
+}</code></pre>
+
+        <h4>Tailwind</h4>
+        <pre><code>&lt;div class="flex flex-wrap gap-2"&gt;
+  &lt;div class="flex-1 min-w-[160px] p-3 rounded bg-gray-100 text-center"&gt;One&lt;/div&gt;
+  &lt;div class="flex-1 min-w-[160px] p-3 rounded bg-gray-100 text-center"&gt;Two&lt;/div&gt;
+  &lt;div class="flex-1 min-w-[160px] p-3 rounded bg-gray-100 text-center"&gt;Three&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </article>
+
+      <article class="pattern" id="pattern-5">
+        <h3>5) Align / Order control (changer l'ordre sur mobile)</h3>
+        <p>
+          <strong>But</strong> : sur desktop afficher A puis B ; sur mobile
+          afficher B avant A.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Sur mobile B est avant A</span
+          >
+          <div class="ex5-wrap">
+            <div class="ex5-a">A</div>
+            <div class="ex5-b">B</div>
+          </div>
+          <p class="note" style="margin-top: 12px">
+            💡 Réduisez la largeur de votre fenêtre pour voir l'ordre changer !
+          </p>
+        </div>
+
+        <h4>HTML</h4>
+        <pre><code>&lt;div class="wrap"&gt;
+  &lt;div class="a"&gt;A&lt;/div&gt;
+  &lt;div class="b"&gt;B&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <h4>CSS pur</h4>
+        <pre><code>.wrap {
+  display: flex;
+  gap: 12px;
+}
+@media (max-width: 600px) {
+  .a {
+    order: 2;
+  }
+  .b {
+    order: 1;
+  }
+}</code></pre>
+
+        <h4>Tailwind</h4>
+        <pre><code>&lt;div class="flex gap-3"&gt;
+  &lt;div class="order-2 sm:order-1"&gt;A&lt;/div&gt;
+  &lt;div class="order-1 sm:order-2"&gt;B&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </article>
+
+      <article class="pattern" id="pattern-6">
+        <h3>6) Grid simple 2 colonnes → 3 colonnes responsive</h3>
+        <p><strong>But</strong> : galerie / cartes.</p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - 2 cols → 3 cols sur grand écran</span
+          >
+          <div class="ex6-grid">
+            <div class="ex6-item">1</div>
+            <div class="ex6-item">2</div>
+            <div class="ex6-item">3</div>
+            <div class="ex6-item">4</div>
+            <div class="ex6-item">5</div>
+            <div class="ex6-item">6</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <pre><code>&lt;div class="grid"&gt;
+  &lt;div class="item"&gt;1&lt;/div&gt;
+  &lt;div class="item"&gt;2&lt;/div&gt;
+  &lt;div class="item"&gt;3&lt;/div&gt;
+  &lt;div class="item"&gt;4&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <h4>CSS pur</h4>
+        <pre><code>.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}</code></pre>
+
+        <h4>Tailwind</h4>
+        <pre><code>&lt;div class="grid grid-cols-2 gap-4 md:grid-cols-3"&gt;
+  &lt;div class="p-4 bg-white rounded"&gt;1&lt;/div&gt;
+  &lt;div class="p-4 bg-white rounded"&gt;2&lt;/div&gt;
+  &lt;div class="p-4 bg-white rounded"&gt;3&lt;/div&gt;
+  &lt;div class="p-4 bg-white rounded"&gt;4&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </article>
+
+      <article class="pattern" id="pattern-7">
+        <h3>7) Grid auto-fit / minmax (responsive cards auto-fill)</h3>
+        <p>
+          <strong>But</strong> : cards qui s'ajustent automatiquement selon la
+          largeur.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - S'adapte automatiquement</span
+          >
+          <div class="ex7-auto">
+            <div class="ex7-card">Card A 🎨</div>
+            <div class="ex7-card">Card B 🎭</div>
+            <div class="ex7-card">Card C 🎪</div>
+            <div class="ex7-card">Card D 🎬</div>
+            <div class="ex7-card">Card E 🎵</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <pre><code>&lt;div class="auto"&gt;
+  &lt;div class="card"&gt;A&lt;/div&gt;
+  &lt;div class="card"&gt;B&lt;/div&gt;
+  &lt;div class="card"&gt;C&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <h4>CSS pur</h4>
+        <pre><code>.auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.card {
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+}</code></pre>
+
+        <h4>Tailwind</h4>
+        <pre><code>&lt;div class="grid gap-4" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));"&gt;
+  &lt;div class="p-4 bg-white rounded"&gt;A&lt;/div&gt;
+  &lt;div class="p-4 bg-white rounded"&gt;B&lt;/div&gt;
+  &lt;div class="p-4 bg-white rounded"&gt;C&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <p class="note">
+          Note : Tailwind ne fournit pas d'utilitaire natif pour
+          <code>auto-fit/minmax</code> — utiliser l'attribut
+          <code>style</code> ou créer une utilité personnalisée.
+        </p>
+      </article>
+
+      <article class="pattern" id="pattern-8">
+        <h3>8) Grid avec zones nommées (layout complexe)</h3>
+        <p>
+          <strong>But</strong> : header / sidebar / main / footer utilisant des
+          grid areas.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Layout complet responsive</span
+          >
+          <div class="ex8-layout">
+            <header>Header 🎯</header>
+            <aside>Aside 📋</aside>
+            <main>Main Content 📄 - La zone principale</main>
+            <footer>Footer 🔻</footer>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <pre><code>&lt;div class="layout"&gt;
+  &lt;header&gt;Header&lt;/header&gt;
+  &lt;aside&gt;Aside&lt;/aside&gt;
+  &lt;main&gt;Main&lt;/main&gt;
+  &lt;footer&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+
+        <h4>CSS pur</h4>
+        <pre><code>.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header"
+    "aside main"
+    "footer footer";
+  gap: 12px;
+}
+.layout header { grid-area: header; }
+.layout aside { grid-area: aside; }
+.layout main { grid-area: main; }
+.layout footer { grid-area: footer; }
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main"
+      "aside"
+      "footer";
+  }
+}</code></pre>
+
+        <h4>Tailwind</h4>
+        <pre><code>&lt;div class="grid md:grid-cols-[220px_1fr] md:grid-rows-[auto_1fr_auto] gap-3"&gt;
+  &lt;header class="md:col-span-2"&gt;Header&lt;/header&gt;
+  &lt;aside&gt;Aside&lt;/aside&gt;
+  &lt;main&gt;Main&lt;/main&gt;
+  &lt;footer class="md:col-span-2"&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+      </article>
+
+      <article class="pattern" id="pattern-9">
+        <h3>
+          9) Sticky header (en-tête fixe au scroll)
+          <span class="badge badge-flex">Flex</span>
+        </h3>
+        <p>
+          <strong>But</strong> : créer un en-tête qui reste visible lors du
+          défilement.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Faites défiler pour voir le header
+            coller</span
+          >
+          <div class="ex9-container">
+            <div class="ex9-header">Header Sticky 📌</div>
+            <div class="ex9-content">
+              <p>Contenu qui défile...</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>
+                Sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua.
+              </p>
+              <p>Ut enim ad minim veniam, quis nostrud exercitation.</p>
+              <p>Duis aute irure dolor in reprehenderit in voluptate.</p>
+              <p>Excepteur sint occaecat cupidatat non proident.</p>
+            </div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="container"&gt;
+  &lt;header class="header"&gt;Header&lt;/header&gt;
+  &lt;div class="content"&gt;Contenu...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.container {
+  height: 400px;
+  overflow-y: auto;
+}
+.header {
+  position: sticky;
+  top: 0;
+  background: #667eea;
+  padding: 16px;
+  z-index: 10;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="h-[400px] overflow-y-auto"&gt;
+  &lt;header class="sticky top-0 bg-indigo-500 p-4 z-10"&gt;Header&lt;/header&gt;
+  &lt;div class="p-5"&gt;Contenu...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-10">
+        <h3>
+          10) Grid Masonry-like (layout Pinterest)
+          <span class="badge badge-grid">Grid</span>
+        </h3>
+        <p>
+          <strong>But</strong> : créer un layout en cascade avec des hauteurs
+          variables.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Layout en cascade</span
+          >
+          <div class="ex10-masonry">
+            <div class="ex10-item">Item 1 📸</div>
+            <div class="ex10-item">Item 2 🖼️</div>
+            <div class="ex10-item">Item 3 🎨</div>
+            <div class="ex10-item">Item 4 🖌️</div>
+            <div class="ex10-item">Item 5 🎭</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="masonry"&gt;
+  &lt;div class="item"&gt;Item 1&lt;/div&gt;
+  &lt;div class="item"&gt;Item 2&lt;/div&gt;
+  &lt;div class="item"&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  grid-auto-rows: 10px;
+}
+.item {
+  grid-row: span var(--row-span, 20);
+  padding: 20px;
+  background: #f0f0f0;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); grid-auto-rows: 10px;"&gt;
+  &lt;div class="p-5 bg-gray-100" style="grid-row: span 20;"&gt;Item 1&lt;/div&gt;
+  &lt;div class="p-5 bg-gray-100" style="grid-row: span 15;"&gt;Item 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-11">
+        <h3>
+          11) Align-self (alignement individuel)
+          <span class="badge badge-flex">Flex</span>
+        </h3>
+        <p>
+          <strong>But</strong> : aligner individuellement chaque élément dans un
+          conteneur flex.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Chaque box a son propre alignement</span
+          >
+          <div class="ex11-container">
+            <div class="ex11-box">Haut ⬆️</div>
+            <div class="ex11-box">Centre ⬌</div>
+            <div class="ex11-box">Bas ⬇️</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="container"&gt;
+  &lt;div class="box box-1"&gt;Box 1&lt;/div&gt;
+  &lt;div class="box box-2"&gt;Box 2&lt;/div&gt;
+  &lt;div class="box box-3"&gt;Box 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.container {
+  display: flex;
+  height: 250px;
+  align-items: flex-start;
+  gap: 12px;
+}
+.box-1 { align-self: flex-start; }
+.box-2 { align-self: center; }
+.box-3 { align-self: flex-end; }</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="flex h-[250px] items-start gap-3"&gt;
+  &lt;div class="flex-1 p-5 self-start"&gt;Box 1&lt;/div&gt;
+  &lt;div class="flex-1 p-5 self-center"&gt;Box 2&lt;/div&gt;
+  &lt;div class="flex-1 p-5 self-end"&gt;Box 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-12">
+        <h3>
+          12) Grid imbriqué (cartes avec sous-grid)
+          <span class="badge badge-grid">Grid</span>
+        </h3>
+        <p>
+          <strong>But</strong> : créer des cartes avec un grid interne aligné
+          avec le parent.
+        </p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF - Grid dans Grid</span>
+          <div class="ex12-parent">
+            <div class="ex12-card">
+              <div class="ex12-card-header">Card A</div>
+              <div class="ex12-card-items">
+                <div class="ex12-item">1</div>
+                <div class="ex12-item">2</div>
+                <div class="ex12-item">3</div>
+                <div class="ex12-item">4</div>
+              </div>
+            </div>
+            <div class="ex12-card">
+              <div class="ex12-card-header">Card B</div>
+              <div class="ex12-card-items">
+                <div class="ex12-item">1</div>
+                <div class="ex12-item">2</div>
+                <div class="ex12-item">3</div>
+                <div class="ex12-item">4</div>
+              </div>
+            </div>
+            <div class="ex12-card">
+              <div class="ex12-card-header">Card C</div>
+              <div class="ex12-card-items">
+                <div class="ex12-item">1</div>
+                <div class="ex12-item">2</div>
+                <div class="ex12-item">3</div>
+                <div class="ex12-item">4</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="parent"&gt;
+  &lt;div class="card"&gt;
+    &lt;div class="card-header"&gt;Card&lt;/div&gt;
+    &lt;div class="card-items"&gt;
+      &lt;div class="item"&gt;1&lt;/div&gt;
+      &lt;div class="item"&gt;2&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.parent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.card-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="grid grid-cols-3 gap-4"&gt;
+  &lt;div class="p-4 border-2 border-indigo-500 rounded"&gt;
+    &lt;div class="font-bold mb-3"&gt;Card&lt;/div&gt;
+    &lt;div class="grid grid-cols-2 gap-2"&gt;
+      &lt;div class="p-2 bg-gray-100 rounded"&gt;1&lt;/div&gt;
+      &lt;div class="p-2 bg-gray-100 rounded"&gt;2&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-13">
+        <h3>
+          13) Flex grow/shrink (proportions variables)
+          <span class="badge badge-flex">Flex</span>
+        </h3>
+        <p>
+          <strong>But</strong> : créer des éléments avec des proportions
+          différentes.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Le box du milieu est 2x plus large</span
+          >
+          <div class="ex13-container">
+            <div class="ex13-item">flex: 1</div>
+            <div class="ex13-item">flex: 2</div>
+            <div class="ex13-item">flex: 1</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="container"&gt;
+  &lt;div class="item item-1"&gt;Item 1&lt;/div&gt;
+  &lt;div class="item item-2"&gt;Item 2&lt;/div&gt;
+  &lt;div class="item item-3"&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.container {
+  display: flex;
+  gap: 12px;
+}
+.item-1 { flex: 1; }
+.item-2 { flex: 2; }
+.item-3 { flex: 1; }</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="flex gap-3"&gt;
+  &lt;div class="flex-1 p-4"&gt;Item 1&lt;/div&gt;
+  &lt;div class="flex-[2] p-4"&gt;Item 2&lt;/div&gt;
+  &lt;div class="flex-1 p-4"&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-14">
+        <h3>
+          14) Grid avec span (éléments qui s'étendent)
+          <span class="badge badge-grid">Grid</span>
+        </h3>
+        <p>
+          <strong>But</strong> : créer des éléments qui s'étendent sur plusieurs
+          colonnes/lignes.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Le premier item s'étend sur 2x2</span
+          >
+          <div class="ex14-grid">
+            <div class="ex14-item">Span 2x2</div>
+            <div class="ex14-item">2</div>
+            <div class="ex14-item">3</div>
+            <div class="ex14-item">4</div>
+            <div class="ex14-item">5</div>
+            <div class="ex14-item">6</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="grid"&gt;
+  &lt;div class="item item-large"&gt;Large&lt;/div&gt;
+  &lt;div class="item"&gt;2&lt;/div&gt;
+  &lt;div class="item"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.item-large {
+  grid-column: span 2;
+  grid-row: span 2;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="grid grid-cols-4 gap-3"&gt;
+  &lt;div class="col-span-2 row-span-2 p-5"&gt;Large&lt;/div&gt;
+  &lt;div class="p-5"&gt;2&lt;/div&gt;
+  &lt;div class="p-5"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-15">
+        <h3>
+          15) Flex wrap avec justify-center
+          <span class="badge badge-flex">Flex</span>
+        </h3>
+        <p>
+          <strong>But</strong> : centrer des éléments qui se répartissent sur
+          plusieurs lignes.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Items centrés qui wrap</span
+          >
+          <div class="ex15-container">
+            <div class="ex15-item">Tag 1</div>
+            <div class="ex15-item">Tag 2</div>
+            <div class="ex15-item">Tag 3</div>
+            <div class="ex15-item">Tag 4</div>
+            <div class="ex15-item">Tag 5</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="container"&gt;
+  &lt;div class="item"&gt;Tag 1&lt;/div&gt;
+  &lt;div class="item"&gt;Tag 2&lt;/div&gt;
+  &lt;div class="item"&gt;Tag 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="flex flex-wrap gap-3 justify-center"&gt;
+  &lt;div class="px-6 py-4"&gt;Tag 1&lt;/div&gt;
+  &lt;div class="px-6 py-4"&gt;Tag 2&lt;/div&gt;
+  &lt;div class="px-6 py-4"&gt;Tag 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-16">
+        <h3>
+          16) Grid avec auto-rows (hauteurs automatiques)
+          <span class="badge badge-grid">Grid</span>
+        </h3>
+        <p>
+          <strong>But</strong> : créer un grid avec des hauteurs de lignes
+          automatiques et variables.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Hauteurs adaptatives</span
+          >
+          <div class="ex16-grid">
+            <div class="ex16-item">Item 1</div>
+            <div class="ex16-item">Item 2 (span 2)</div>
+            <div class="ex16-item">Item 3</div>
+            <div class="ex16-item">Item 4</div>
+            <div class="ex16-item">Item 5</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="grid"&gt;
+  &lt;div class="item"&gt;Item 1&lt;/div&gt;
+  &lt;div class="item item-tall"&gt;Item 2&lt;/div&gt;
+  &lt;div class="item"&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  gap: 12px;
+}
+.item-tall {
+  grid-row: span 2;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="grid grid-cols-3 gap-3" style="grid-auto-rows: minmax(100px, auto);"&gt;
+  &lt;div class="p-5"&gt;Item 1&lt;/div&gt;
+  &lt;div class="p-5 row-span-2"&gt;Item 2&lt;/div&gt;
+  &lt;div class="p-5"&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-17">
+        <h3>
+          17) Flex avec space-around <span class="badge badge-flex">Flex</span>
+        </h3>
+        <p>
+          <strong>But</strong> : distribuer l'espace autour des éléments de
+          manière égale.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Espacement autour des items</span
+          >
+          <div class="ex17-container">
+            <div class="ex17-item">Item 1</div>
+            <div class="ex17-item">Item 2</div>
+            <div class="ex17-item">Item 3</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="container"&gt;
+  &lt;div class="item"&gt;Item 1&lt;/div&gt;
+  &lt;div class="item"&gt;Item 2&lt;/div&gt;
+  &lt;div class="item"&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 12px;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="flex justify-around items-center gap-3"&gt;
+  &lt;div class="px-6 py-4"&gt;Item 1&lt;/div&gt;
+  &lt;div class="px-6 py-4"&gt;Item 2&lt;/div&gt;
+  &lt;div class="px-6 py-4"&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-18">
+        <h3>
+          18) Grid avec fr, auto et largeur fixe
+          <span class="badge badge-grid">Grid</span>
+        </h3>
+        <p>
+          <strong>But</strong> : créer un layout avec sidebar fixe, contenu
+          flexible et sidebar auto.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Layout avec colonnes mixtes</span
+          >
+          <div class="ex18-grid">
+            <div class="ex18-item">200px</div>
+            <div class="ex18-item">1fr (flexible)</div>
+            <div class="ex18-item">auto</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="grid"&gt;
+  &lt;div class="item"&gt;Sidebar&lt;/div&gt;
+  &lt;div class="item"&gt;Main&lt;/div&gt;
+  &lt;div class="item"&gt;Actions&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.grid {
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  gap: 12px;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="grid gap-3" style="grid-template-columns: 200px 1fr auto;"&gt;
+  &lt;div class="p-5"&gt;Sidebar&lt;/div&gt;
+  &lt;div class="p-5"&gt;Main&lt;/div&gt;
+  &lt;div class="p-5"&gt;Actions&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-19">
+        <h3>
+          19) Flex avec align-content (multi-lignes)
+          <span class="badge badge-flex">Flex</span>
+        </h3>
+        <p>
+          <strong>But</strong> : aligner les lignes multiples dans un conteneur
+          flex.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Alignement des lignes multiples</span
+          >
+          <div class="ex19-container">
+            <div class="ex19-item">1</div>
+            <div class="ex19-item">2</div>
+            <div class="ex19-item">3</div>
+            <div class="ex19-item">4</div>
+            <div class="ex19-item">5</div>
+            <div class="ex19-item">6</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="container"&gt;
+  &lt;div class="item"&gt;1&lt;/div&gt;
+  &lt;div class="item"&gt;2&lt;/div&gt;
+  &lt;div class="item"&gt;3&lt;/div&gt;
+  &lt;div class="item"&gt;4&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 300px;
+  gap: 12px;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="flex flex-wrap content-center h-[300px] gap-3"&gt;
+  &lt;div class="p-5"&gt;1&lt;/div&gt;
+  &lt;div class="p-5"&gt;2&lt;/div&gt;
+  &lt;div class="p-5"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-20">
+        <h3>
+          20) Grid avec lignes nommées
+          <span class="badge badge-grid">Grid</span>
+        </h3>
+        <p>
+          <strong>But</strong> : utiliser des noms pour les lignes de la grille
+          au lieu de numéros.
+        </p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF - Lignes nommées</span>
+          <div class="ex20-grid">
+            <div class="ex20-item">start → middle</div>
+            <div class="ex20-item">middle → end</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="grid"&gt;
+  &lt;div class="item item-1"&gt;Item 1&lt;/div&gt;
+  &lt;div class="item item-2"&gt;Item 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.grid {
+  display: grid;
+  grid-template-columns: [start] 1fr [middle] 1fr [end];
+  gap: 12px;
+}
+.item-1 {
+  grid-column: start / middle;
+}
+.item-2 {
+  grid-column: middle / end;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="grid gap-3" style="grid-template-columns: [start] 1fr [middle] 1fr [end];"&gt;
+  &lt;div class="p-5" style="grid-column: start / middle;"&gt;Item 1&lt;/div&gt;
+  &lt;div class="p-5" style="grid-column: middle / end;"&gt;Item 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-21">
+        <h3>
+          21) Flex avec flex-basis (largeurs fixes + flexible)
+          <span class="badge badge-flex">Flex</span>
+        </h3>
+        <p>
+          <strong>But</strong> : créer un layout avec des éléments de largeur
+          fixe et un élément flexible.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Largeurs fixes + flexible</span
+          >
+          <div class="ex21-container">
+            <div class="ex21-item">150px</div>
+            <div class="ex21-item">flex: 1</div>
+            <div class="ex21-item">100px</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="container"&gt;
+  &lt;div class="item sidebar"&gt;Sidebar&lt;/div&gt;
+  &lt;div class="item main"&gt;Main&lt;/div&gt;
+  &lt;div class="item actions"&gt;Actions&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.container {
+  display: flex;
+  gap: 12px;
+}
+.sidebar {
+  flex: 0 0 150px;
+}
+.main {
+  flex: 1 1 auto;
+}
+.actions {
+  flex: 0 0 100px;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="flex gap-3"&gt;
+  &lt;div class="flex-[0_0_150px] p-4"&gt;Sidebar&lt;/div&gt;
+  &lt;div class="flex-1 p-4"&gt;Main&lt;/div&gt;
+  &lt;div class="flex-[0_0_100px] p-4"&gt;Actions&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-22">
+        <h3>
+          22) Grid imbriqué avancé (cartes alignées)
+          <span class="badge badge-grid">Grid</span>
+        </h3>
+        <p>
+          <strong>But</strong> : créer des cartes avec un grid interne, toutes
+          alignées.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Cartes avec grid interne</span
+          >
+          <div class="ex22-parent">
+            <div class="ex22-card">
+              <div class="ex22-item">A1</div>
+              <div class="ex22-item">A2</div>
+              <div class="ex22-item">A3</div>
+              <div class="ex22-item">A4</div>
+            </div>
+            <div class="ex22-card">
+              <div class="ex22-item">B1</div>
+              <div class="ex22-item">B2</div>
+              <div class="ex22-item">B3</div>
+              <div class="ex22-item">B4</div>
+            </div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="parent"&gt;
+  &lt;div class="card"&gt;
+    &lt;div class="item"&gt;1&lt;/div&gt;
+    &lt;div class="item"&gt;2&lt;/div&gt;
+    &lt;div class="item"&gt;3&lt;/div&gt;
+    &lt;div class="item"&gt;4&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.parent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 16px;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="grid grid-cols-2 gap-4"&gt;
+  &lt;div class="grid grid-cols-2 gap-2 p-4 border-2 border-indigo-500 rounded"&gt;
+    &lt;div class="p-3 bg-gray-100 rounded"&gt;1&lt;/div&gt;
+    &lt;div class="p-3 bg-gray-100 rounded"&gt;2&lt;/div&gt;
+    &lt;div class="p-3 bg-gray-100 rounded"&gt;3&lt;/div&gt;
+    &lt;div class="p-3 bg-gray-100 rounded"&gt;4&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-23">
+        <h3>
+          23) Flex wrap avec flex-basis calculé
+          <span class="badge badge-flex">Flex</span>
+        </h3>
+        <p>
+          <strong>But</strong> : créer des items qui s'adaptent avec une largeur
+          minimale.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Items adaptatifs avec min-width</span
+          >
+          <div class="ex23-container">
+            <div class="ex23-item">Item 1</div>
+            <div class="ex23-item">Item 2</div>
+            <div class="ex23-item">Item 3</div>
+            <div class="ex23-item">Item 4</div>
+            <div class="ex23-item">Item 5</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="container"&gt;
+  &lt;div class="item"&gt;Item 1&lt;/div&gt;
+  &lt;div class="item"&gt;Item 2&lt;/div&gt;
+  &lt;div class="item"&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.item {
+  flex: 1 1 calc(33.333% - 11px);
+  min-width: 150px;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="flex flex-wrap gap-4"&gt;
+  &lt;div class="flex-1 min-w-[150px] p-5" style="flex-basis: calc(33.333% - 11px);"&gt;Item 1&lt;/div&gt;
+  &lt;div class="flex-1 min-w-[150px] p-5" style="flex-basis: calc(33.333% - 11px);"&gt;Item 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="pattern" id="pattern-24">
+        <h3>
+          24) Grid avec minmax et max-content
+          <span class="badge badge-grid">Grid</span>
+        </h3>
+        <p>
+          <strong>But</strong> : créer des colonnes qui s'adaptent au contenu
+          avec des limites min/max.
+        </p>
+
+        <div class="example">
+          <span class="example-label"
+            >EXEMPLE INTERACTIF - Colonnes adaptatives au contenu</span
+          >
+          <div class="ex24-grid">
+            <div class="ex24-item">Min 200px</div>
+            <div class="ex24-item">1fr flexible</div>
+            <div class="ex24-item">Auto</div>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="grid"&gt;
+  &lt;div class="item"&gt;Sidebar&lt;/div&gt;
+  &lt;div class="item"&gt;Main Content&lt;/div&gt;
+  &lt;div class="item"&gt;Actions&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4>CSS pur</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>.grid {
+  display: grid;
+  grid-template-columns: 
+    minmax(200px, max-content) 
+    1fr 
+    minmax(150px, max-content);
+  gap: 12px;
+}</code></pre>
+        </div>
+
+        <h4>Tailwind</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;div class="grid gap-3" style="grid-template-columns: minmax(200px, max-content) 1fr minmax(150px, max-content);"&gt;
+  &lt;div class="p-4"&gt;Sidebar&lt;/div&gt;
+  &lt;div class="p-4"&gt;Main Content&lt;/div&gt;
+  &lt;div class="p-4"&gt;Actions&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <hr />
+
+      <section id="extras">
+        <h2>Extras & tips rapides</h2>
+        <ul>
+          <li>
+            <strong>Gap vs margin :</strong> préférez <code>gap</code> sur les
+            conteneurs flex/grid pour un alignement uniforme.
+          </li>
+          <li>
+            <strong>Align items :</strong>
+            <code>align-items</code> affecte l'axe transversal ;
+            <code>justify-content</code> l'axe principal.
+          </li>
+          <li>
+            <strong>Centering with transforms :</strong> pour les modals en
+            position absolute,
+            <code>top:50%; left:50%; transform: translate(-50%,-50%)</code>
+            reste utile.
+          </li>
+          <li>
+            <strong>Tailwind responsive :</strong>
+            <code>sm:</code>, <code>md:</code>, <code>lg:</code>,
+            <code>xl:</code> se préfixent avant les utilitaires.
+          </li>
+          <li>
+            <strong>Accessibility :</strong> ajoutez <code>role</code> et
+            <code>aria-*</code> sur les composants complexes (nav, dialog).
+          </li>
+        </ul>
+      </section>
+
+      <hr />
+
+      <section>
+        <h2>💡 Comment utiliser cette documentation</h2>
+        <p>
+          Chaque pattern contient maintenant un
+          <strong>exemple interactif visuel</strong> que vous pouvez voir
+          directement dans votre navigateur. Redimensionnez votre fenêtre pour
+          tester la réactivité des layouts !
+        </p>
+        <ul>
+          <li>
+            📱 Les exemples s'adaptent automatiquement à la taille de votre
+            écran
+          </li>
+          <li>
+            🎨 Les couleurs et gradients rendent les structures plus visibles
+          </li>
+          <li>
+            📋 Copiez-collez le code HTML/CSS ou Tailwind directement dans vos
+            projets
+          </li>
+          <li>
+            🔍 Inspectez les exemples avec les DevTools pour mieux comprendre
+          </li>
+        </ul>
+      </section>
+
+      <hr />
+
+      <section>
+        <h2>🎯 Export / intégration</h2>
+        <p>Cette documentation est maintenant complète avec :</p>
+        <ul>
+          <li>
+            ✅ <strong>24 patterns</strong> avec exemples visuels interactifs
+            (12 Flex + 12 Grid)
+          </li>
+          <li>✅ Code HTML + CSS pur pour chaque pattern</li>
+          <li>✅ Équivalents Tailwind complets</li>
+          <li>
+            ✅ <strong>Bouton de copie</strong> sur chaque bloc de code (📋
+            Copier)
+          </li>
+          <li>✅ Responsive design testé sur tous les exemples</li>
+          <li>✅ Mode clair/sombre automatique</li>
+          <li>✅ Badges visuels pour identifier Flex vs Grid</li>
+        </ul>
+      </section>
+    </main>
+    
+    <!-- Bouton retour en haut -->
+    <button id="back-to-top" class="back-to-top" aria-label="Retour en haut de la page">
+      ↑
+    </button>
+    
+    <script src="../commun.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
