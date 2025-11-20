@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Documentation Datalist HTML</title>
-    <link rel="stylesheet" href="../commum.css">
+    <link rel="stylesheet" href="../commun.css">
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -41,6 +41,11 @@
               <li><a href="#example-18" class="nav-link">18) Input type="datetime-local"</a></li>
               <li><a href="#example-19" class="nav-link">19) Input type="number"</a></li>
               <li><a href="#example-20" class="nav-link">20) Input type="color"</a></li>
+              <li><a href="#example-21" class="nav-link">21) Codes postaux</a></li>
+              <li><a href="#example-22" class="nav-link">22) Devises / Monnaies</a></li>
+              <li><a href="#example-23" class="nav-link">23) Codes de pays ISO</a></li>
+              <li><a href="#example-24" class="nav-link">24) Formats de fichiers</a></li>
+              <li><a href="#example-25" class="nav-link">25) Datalist partagée</a></li>
             </ul>
           </li>
           <li class="nav-section">
@@ -1024,6 +1029,266 @@ document.getElementById('city').addEventListener('input', function(e) {
   &lt;option value="#6366f1" label="Indigo"&gt;
 &lt;/datalist&gt;</code></pre>
         </div>
+      </article>
+
+      <!-- Exemple 21 -->
+      <article class="pattern" id="example-21">
+        <h3>21) Codes postaux</h3>
+        <p><strong>But</strong> : suggérer des codes postaux pour faciliter la saisie d'adresses.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="postal-input">Code postal :</label>
+            <input 
+              type="text" 
+              id="postal-input" 
+              list="postal-codes"
+              placeholder="75001, 69001, 13001..."
+              pattern="[0-9]{5}"
+              maxlength="5"
+            />
+            <datalist id="postal-codes">
+              <option value="75001" label="Paris 1er">
+              <option value="75008" label="Paris 8e">
+              <option value="69001" label="Lyon 1er">
+              <option value="69003" label="Lyon 3e">
+              <option value="13001" label="Marseille 1er">
+              <option value="13008" label="Marseille 8e">
+              <option value="33000" label="Bordeaux">
+              <option value="31000" label="Toulouse">
+              <option value="59000" label="Lille">
+              <option value="67000" label="Strasbourg">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="postal"&gt;Code postal :&lt;/label&gt;
+&lt;input 
+  type="text" 
+  id="postal" 
+  list="postal-codes"
+  placeholder="75001, 69001..."
+  pattern="[0-9]{5}"
+  maxlength="5"
+/&gt;
+&lt;datalist id="postal-codes"&gt;
+  &lt;option value="75001" label="Paris 1er"&gt;
+  &lt;option value="75008" label="Paris 8e"&gt;
+  &lt;option value="69001" label="Lyon 1er"&gt;
+  &lt;option value="13001" label="Marseille 1er"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 22 -->
+      <article class="pattern" id="example-22">
+        <h3>22) Devises / Monnaies</h3>
+        <p><strong>But</strong> : suggérer des devises pour les formulaires de paiement ou de conversion.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="currency-input">Devise :</label>
+            <input 
+              type="text" 
+              id="currency-input" 
+              list="currencies"
+              placeholder="EUR, USD, GBP..."
+            />
+            <datalist id="currencies">
+              <option value="EUR" label="Euro (€)">
+              <option value="USD" label="Dollar US ($)">
+              <option value="GBP" label="Livre Sterling (£)">
+              <option value="JPY" label="Yen (¥)">
+              <option value="CHF" label="Franc Suisse">
+              <option value="CAD" label="Dollar Canadien">
+              <option value="AUD" label="Dollar Australien">
+              <option value="CNY" label="Yuan Chinois">
+              <option value="INR" label="Roupie Indienne">
+              <option value="BRL" label="Real Brésilien">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="currency"&gt;Devise :&lt;/label&gt;
+&lt;input type="text" id="currency" list="currencies" placeholder="EUR, USD..." /&gt;
+&lt;datalist id="currencies"&gt;
+  &lt;option value="EUR" label="Euro (€)"&gt;
+  &lt;option value="USD" label="Dollar US ($)"&gt;
+  &lt;option value="GBP" label="Livre Sterling (£)"&gt;
+  &lt;option value="JPY" label="Yen (¥)"&gt;
+  &lt;option value="CHF" label="Franc Suisse"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 23 -->
+      <article class="pattern" id="example-23">
+        <h3>23) Codes de pays ISO</h3>
+        <p><strong>But</strong> : suggérer des codes de pays ISO (ISO 3166-1 alpha-2) pour les formulaires internationaux.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="country-code-input">Code pays (ISO) :</label>
+            <input 
+              type="text" 
+              id="country-code-input" 
+              list="country-codes"
+              placeholder="FR, US, GB..."
+              pattern="[A-Z]{2}"
+              maxlength="2"
+              style="text-transform: uppercase;"
+            />
+            <datalist id="country-codes">
+              <option value="FR" label="France">
+              <option value="US" label="États-Unis">
+              <option value="GB" label="Royaume-Uni">
+              <option value="DE" label="Allemagne">
+              <option value="IT" label="Italie">
+              <option value="ES" label="Espagne">
+              <option value="CA" label="Canada">
+              <option value="AU" label="Australie">
+              <option value="JP" label="Japon">
+              <option value="CN" label="Chine">
+              <option value="BR" label="Brésil">
+              <option value="IN" label="Inde">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="country-code"&gt;Code pays (ISO) :&lt;/label&gt;
+&lt;input 
+  type="text" 
+  id="country-code" 
+  list="country-codes"
+  placeholder="FR, US, GB..."
+  pattern="[A-Z]{2}"
+  maxlength="2"
+  style="text-transform: uppercase;"
+/&gt;
+&lt;datalist id="country-codes"&gt;
+  &lt;option value="FR" label="France"&gt;
+  &lt;option value="US" label="États-Unis"&gt;
+  &lt;option value="GB" label="Royaume-Uni"&gt;
+  &lt;option value="DE" label="Allemagne"&gt;
+  &lt;option value="IT" label="Italie"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 24 -->
+      <article class="pattern" id="example-24">
+        <h3>24) Formats de fichiers / Extensions</h3>
+        <p><strong>But</strong> : suggérer des extensions de fichiers pour les champs de téléchargement ou de filtrage.</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF</span>
+          <div class="example-content">
+            <label for="file-extension-input">Extension de fichier :</label>
+            <input 
+              type="text" 
+              id="file-extension-input" 
+              list="file-extensions"
+              placeholder=".jpg, .png, .pdf..."
+            />
+            <datalist id="file-extensions">
+              <option value=".jpg" label="JPEG Image">
+              <option value=".png" label="PNG Image">
+              <option value=".gif" label="GIF Image">
+              <option value=".svg" label="SVG Vector">
+              <option value=".pdf" label="PDF Document">
+              <option value=".doc" label="Word Document">
+              <option value=".docx" label="Word Document (XML)">
+              <option value=".xls" label="Excel Spreadsheet">
+              <option value=".xlsx" label="Excel Spreadsheet (XML)">
+              <option value=".zip" label="ZIP Archive">
+              <option value=".mp4" label="MP4 Video">
+              <option value=".mp3" label="MP3 Audio">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="extension"&gt;Extension de fichier :&lt;/label&gt;
+&lt;input type="text" id="extension" list="file-extensions" placeholder=".jpg, .png..." /&gt;
+&lt;datalist id="file-extensions"&gt;
+  &lt;option value=".jpg" label="JPEG Image"&gt;
+  &lt;option value=".png" label="PNG Image"&gt;
+  &lt;option value=".pdf" label="PDF Document"&gt;
+  &lt;option value=".doc" label="Word Document"&gt;
+  &lt;option value=".zip" label="ZIP Archive"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+      </article>
+
+      <!-- Exemple 25 -->
+      <article class="pattern" id="example-25">
+        <h3>25) Plusieurs inputs partageant la même datalist</h3>
+        <p><strong>But</strong> : réutiliser une même liste de suggestions pour plusieurs champs de formulaire (ex: formulaire de recherche avec plusieurs filtres).</p>
+
+        <div class="example">
+          <span class="example-label">EXEMPLE INTERACTIF - Les deux champs partagent la même liste de devises</span>
+          <div class="example-content">
+            <label for="currency-from">Devise source :</label>
+            <input 
+              type="text" 
+              id="currency-from" 
+              list="shared-currencies"
+              placeholder="EUR, USD, GBP..."
+            />
+            <br><br>
+            <label for="currency-to">Devise cible :</label>
+            <input 
+              type="text" 
+              id="currency-to" 
+              list="shared-currencies"
+              placeholder="EUR, USD, GBP..."
+            />
+            <datalist id="shared-currencies">
+              <option value="EUR" label="Euro (€)">
+              <option value="USD" label="Dollar US ($)">
+              <option value="GBP" label="Livre Sterling (£)">
+              <option value="JPY" label="Yen (¥)">
+              <option value="CHF" label="Franc Suisse">
+              <option value="CAD" label="Dollar Canadien">
+              <option value="AUD" label="Dollar Australien">
+              <option value="CNY" label="Yuan Chinois">
+            </datalist>
+          </div>
+        </div>
+
+        <h4>HTML</h4>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copier</button>
+          <pre><code>&lt;label for="from"&gt;Devise source :&lt;/label&gt;
+&lt;input type="text" id="from" list="shared-currencies" /&gt;
+
+&lt;label for="to"&gt;Devise cible :&lt;/label&gt;
+&lt;input type="text" id="to" list="shared-currencies" /&gt;
+
+&lt;datalist id="shared-currencies"&gt;
+  &lt;option value="EUR" label="Euro (€)"&gt;
+  &lt;option value="USD" label="Dollar US ($)"&gt;
+  &lt;option value="GBP" label="Livre Sterling (£)"&gt;
+  &lt;option value="JPY" label="Yen (¥)"&gt;
+&lt;/datalist&gt;</code></pre>
+        </div>
+        <p class="note">
+          💡 <strong>Astuce :</strong> Un seul élément <code>&lt;datalist&gt;</code> peut être référencé par plusieurs inputs en utilisant le même <code>id</code> dans l'attribut <code>list</code>. C'est utile pour les formulaires avec plusieurs champs similaires (convertisseur de devises, recherche avec filtres, etc.).
+        </p>
       </article>
 
       <hr />
